@@ -5,15 +5,16 @@ import maplibregl, { type Map as MapLibreMap } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import type { TimelineSnapshot } from "@/lib/timeline";
 import { colorForTerritory } from "@/lib/territoryColor";
-import { topTerritoryLabels } from "@/lib/territoryLabels";
+import {
+  computeLabelCandidates,
+  labelLimitForZoom,
+  selectVisibleLabels,
+  type ViewportBounds,
+} from "@/lib/territoryLabels";
 
 const SOURCE_ID = "territories";
 const FILL_LAYER_ID = "territories-fill";
 const LINE_LAYER_ID = "territories-line";
-
-// Only the biggest territories get a label, so the map stays readable
-// instead of drowning in tiny city-state/enclave names.
-const MAX_LABELS = 12;
 
 // Plain ocean-colored background instead of a hosted basemap style: the
 // territory polygons are the whole point of this map, and this keeps the
@@ -35,14 +36,21 @@ type Props = {
   onSelectTerritory: (name: string | null) => void;
 };
 
-const geojsonCache = new Map<string, GeoJSON.FeatureCollection>();
+type LabelCandidates = ReturnType<typeof computeLabelCandidates>;
 
-async function loadSnapshot(file: string): Promise<GeoJSON.FeatureCollection> {
-  const cached = geojsonCache.get(file);
+type SnapshotData = {
+  geojson: GeoJSON.FeatureCollection;
+  labelCandidates: LabelCandidates;
+};
+
+const snapshotCache = new Map<string, SnapshotData>();
+
+async function loadSnapshot(file: string): Promise<SnapshotData> {
+  const cached = snapshotCache.get(file);
   if (cached) return cached;
   const response = await fetch(`/data/historical-basemaps/${file}`);
-  const data = (await response.json()) as GeoJSON.FeatureCollection;
-  data.features.forEach((feature) => {
+  const geojson = (await response.json()) as GeoJSON.FeatureCollection;
+  geojson.features.forEach((feature) => {
     const name = (feature.properties?.NAME ?? feature.properties?.SUBJECTO) as
       | string
       | null;
@@ -51,7 +59,8 @@ async function loadSnapshot(file: string): Promise<GeoJSON.FeatureCollection> {
       __color: colorForTerritory(name),
     };
   });
-  geojsonCache.set(file, data);
+  const data: SnapshotData = { geojson, labelCandidates: computeLabelCandidates(geojson) };
+  snapshotCache.set(file, data);
   return data;
 }
 
@@ -70,10 +79,23 @@ function createLabelElement(name: string, color: string): HTMLDivElement {
   return el;
 }
 
+function boundsWithPadding(map: MapLibreMap, paddingRatio: number): ViewportBounds {
+  const bounds = map.getBounds();
+  const west = bounds.getWest();
+  const east = bounds.getEast();
+  const south = bounds.getSouth();
+  const north = bounds.getNorth();
+  const padX = (east - west) * paddingRatio;
+  const padY = (north - south) * paddingRatio;
+  return { west: west - padX, east: east + padX, south: south - padY, north: north + padY };
+}
+
 export default function EmpireMap({ snapshot, onSelectTerritory }: Props) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
   const labelMarkersRef = useRef<maplibregl.Marker[]>([]);
+  const labelCandidatesRef = useRef<LabelCandidates>([]);
+  const refreshLabelsRef = useRef<() => void>(() => {});
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -87,6 +109,23 @@ export default function EmpireMap({ snapshot, onSelectTerritory }: Props) {
       attributionControl: { compact: true },
     });
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
+
+    refreshLabelsRef.current = () => {
+      labelMarkersRef.current.forEach((marker) => marker.remove());
+      const limit = labelLimitForZoom(map.getZoom());
+      const bounds = boundsWithPadding(map, 0.15);
+      labelMarkersRef.current = selectVisibleLabels(labelCandidatesRef.current, {
+        limit,
+        bounds,
+      }).map((label) =>
+        new maplibregl.Marker({
+          element: createLabelElement(label.name, label.color),
+          anchor: "center",
+        })
+          .setLngLat([label.lng, label.lat])
+          .addTo(map)
+      );
+    };
 
     map.on("load", () => {
       map.addSource(SOURCE_ID, {
@@ -128,6 +167,8 @@ export default function EmpireMap({ snapshot, onSelectTerritory }: Props) {
         map.getCanvas().style.cursor = "";
       });
 
+      map.on("moveend", () => refreshLabelsRef.current());
+
       setReady(true);
     });
 
@@ -148,17 +189,12 @@ export default function EmpireMap({ snapshot, onSelectTerritory }: Props) {
     if (!map) return;
     let cancelled = false;
 
-    loadSnapshot(snapshot.file).then((data) => {
+    loadSnapshot(snapshot.file).then(({ geojson, labelCandidates }) => {
       if (cancelled) return;
       const source = map.getSource(SOURCE_ID) as maplibregl.GeoJSONSource | undefined;
-      source?.setData(data);
-
-      labelMarkersRef.current.forEach((marker) => marker.remove());
-      labelMarkersRef.current = topTerritoryLabels(data, MAX_LABELS).map((label) =>
-        new maplibregl.Marker({ element: createLabelElement(label.name, label.color), anchor: "center" })
-          .setLngLat([label.lng, label.lat])
-          .addTo(map)
-      );
+      source?.setData(geojson);
+      labelCandidatesRef.current = labelCandidates;
+      refreshLabelsRef.current();
     });
 
     return () => {

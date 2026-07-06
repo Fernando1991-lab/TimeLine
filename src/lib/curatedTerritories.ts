@@ -16,10 +16,23 @@
 // hunter-gatherer regions.
 export const CURATED_TERRITORIES: Record<string, string> = {
   // Ancient Near East / Mediterranean
-  Ur: "Ur",
+  Ur: "Suméria (Ur)",
   Elam: "Elão",
   Babylonia: "Babilônia",
   Assyria: "Assíria",
+  Canaan: "Canaã",
+  Minoan: "Civilização Minóica",
+  Cycladic: "Civilização Cicládica",
+  Hittites: "Hititas",
+  Urartu: "Urartu",
+  Phrygians: "Frígios",
+  Thrace: "Trácia",
+  Illyrians: "Ilírios",
+  "Kingdom of David and Solomon": "Reino de Davi e Salomão",
+  Arameans: "Arameus",
+  "state societies and Aramaean kingdoms": "Sociedades estatais e reinos arameus",
+  "Iranian pastoralists": "Pastores iranianos",
+  "Gandhara grave culture": "Cultura de Gandara",
   "Indus valley civilization": "Civilização do Vale do Indo",
   Egypt: "Egito",
   "Achaemenid Empire": "Império Aquemênida",
@@ -50,6 +63,7 @@ export const CURATED_TERRITORIES: Record<string, string> = {
 
   // South / Central / East Asia (ancient–medieval)
   Xiongnu: "Xiongnu",
+  Xia: "Dinastia Xia",
   Han: "Império Han",
   "Han Empire": "Império Han",
   "Kushan Empire": "Império Cuchana",
@@ -219,6 +233,11 @@ export const CURATED_TERRITORIES: Record<string, string> = {
   Valdivia: "Valdivia",
   Namazga: "Cultura Namazga",
   "minor states": "Estados menores",
+  "Yamnaya culture": "Cultura Yamnaya",
+  Sintashta: "Cultura Sintashta",
+  Únětice: "Cultura Únětice",
+  "Dapenkeng culture": "Cultura Dapenkeng",
+  "Dakapeng culture": "Cultura Dapenkeng",
 };
 
 export function translateTerritoryName(name: string): string {

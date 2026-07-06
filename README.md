@@ -23,15 +23,21 @@ MapLibre GL e Prisma/Neon.
   disponíveis (não é uma escala contínua de anos — pula de snapshot em
   snapshot) e tem play/pause automático.
 - **Rótulos no mapa**: `src/lib/territoryLabels.ts` mostra o nome dos
-  territórios mais importantes de cada período (limitado a 12 por padrão,
-  via marcadores HTML — não usamos `symbol` layers do MapLibre para evitar
-  depender de um servidor de fontes/glyphs externo). O ranking prioriza
-  estados/impérios nomeados (curados em `src/lib/curatedTerritories.ts`)
-  sobre regiões genéricas de "caçadores-coletores"/"nômades" do dataset,
-  que são enormes em área mas pouco relevantes historicamente. Nomes em
-  português também vêm desse arquivo curado — é uma lista manual, não
-  cobre 100% dos nomes do dataset (o que não está lá aparece em inglês).
-  Para adicionar/traduzir mais territórios, edite `CURATED_TERRITORIES`.
+  territórios via marcadores HTML (não usamos `symbol` layers do MapLibre
+  para evitar depender de um servidor de fontes/glyphs externo). A
+  quantidade de rótulos visíveis cresce com o zoom (12 no mundo todo, até
+  ~90 num continente/região) e só mostra o que está dentro da área visível
+  — é assim que territórios pequenos mas importantes (Babilônia, por
+  exemplo) aparecem ao aproximar, mesmo sem entrar no ranking global por
+  área. O ranking prioriza estados/impérios nomeados (curados em
+  `src/lib/curatedTerritories.ts`) sobre regiões genéricas de
+  "caçadores-coletores"/"nômades" do dataset, que são enormes em área mas
+  pouco relevantes historicamente. Nomes em português também vêm desse
+  arquivo curado — é uma lista manual (hoje cobre uns 170 territórios),
+  não cobre 100% dos ~1700 nomes únicos do dataset (o que não está lá
+  aparece em inglês, principalmente ao dar zoom bem próximo em regiões
+  menos curadas). Para adicionar/traduzir mais territórios, edite
+  `CURATED_TERRITORIES`.
 - **Conteúdo curado**: clicar num território consulta `/api/empires?name=...`,
   que busca no Postgres (via Prisma) uma descrição para aquele nome. Sem
   `DATABASE_URL` configurado, o mapa funciona normalmente e só não mostra
