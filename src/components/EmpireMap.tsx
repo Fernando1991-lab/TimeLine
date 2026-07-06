@@ -57,6 +57,7 @@ async function loadSnapshot(file: string): Promise<SnapshotData> {
     feature.properties = {
       ...feature.properties,
       __color: colorForTerritory(name),
+      __hasName: Boolean(name),
     };
   });
   const data: SnapshotData = { geojson, labelCandidates: computeLabelCandidates(geojson) };
@@ -79,15 +80,25 @@ function createLabelElement(name: string, color: string): HTMLDivElement {
   return el;
 }
 
-function boundsWithPadding(map: MapLibreMap, paddingRatio: number): ViewportBounds {
+function boundsFromMap(map: MapLibreMap): ViewportBounds {
   const bounds = map.getBounds();
-  const west = bounds.getWest();
-  const east = bounds.getEast();
-  const south = bounds.getSouth();
-  const north = bounds.getNorth();
-  const padX = (east - west) * paddingRatio;
-  const padY = (north - south) * paddingRatio;
-  return { west: west - padX, east: east + padX, south: south - padY, north: north + padY };
+  return {
+    west: bounds.getWest(),
+    east: bounds.getEast(),
+    south: bounds.getSouth(),
+    north: bounds.getNorth(),
+  };
+}
+
+function padBounds(bounds: ViewportBounds, paddingRatio: number): ViewportBounds {
+  const padX = (bounds.east - bounds.west) * paddingRatio;
+  const padY = (bounds.north - bounds.south) * paddingRatio;
+  return {
+    west: bounds.west - padX,
+    east: bounds.east + padX,
+    south: bounds.south - padY,
+    north: bounds.north + padY,
+  };
 }
 
 export default function EmpireMap({ snapshot, onSelectTerritory }: Props) {
@@ -113,11 +124,14 @@ export default function EmpireMap({ snapshot, onSelectTerritory }: Props) {
     refreshLabelsRef.current = () => {
       labelMarkersRef.current.forEach((marker) => marker.remove());
       const limit = labelLimitForZoom(map.getZoom());
-      const bounds = boundsWithPadding(map, 0.15);
-      labelMarkersRef.current = selectVisibleLabels(labelCandidatesRef.current, {
+      const clampBounds = boundsFromMap(map);
+      const bounds = padBounds(clampBounds, 0.15);
+      const selected = selectVisibleLabels(labelCandidatesRef.current, {
         limit,
         bounds,
-      }).map((label) =>
+        clampBounds,
+      });
+      labelMarkersRef.current = selected.map((label) =>
         new maplibregl.Marker({
           element: createLabelElement(label.name, label.color),
           anchor: "center",
@@ -138,7 +152,10 @@ export default function EmpireMap({ snapshot, onSelectTerritory }: Props) {
         source: SOURCE_ID,
         paint: {
           "fill-color": ["coalesce", ["get", "__color"], "#c9c9c9"],
-          "fill-opacity": 0.65,
+          // Land with no state/people assigned in the dataset for this
+          // period fades toward the ocean color instead of reading as a
+          // same-weight "mystery country" next to real territories.
+          "fill-opacity": ["case", ["get", "__hasName"], 0.65, 0.12],
         },
       });
       map.addLayer({
@@ -148,7 +165,7 @@ export default function EmpireMap({ snapshot, onSelectTerritory }: Props) {
         paint: {
           "line-color": "#2b2b2b",
           "line-width": 0.6,
-          "line-opacity": 0.5,
+          "line-opacity": ["case", ["get", "__hasName"], 0.5, 0.15],
         },
       });
 

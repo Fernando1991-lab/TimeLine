@@ -37,7 +37,16 @@ MapLibre GL e Prisma/Neon.
   não cobre 100% dos ~1700 nomes únicos do dataset (o que não está lá
   aparece em inglês, principalmente ao dar zoom bem próximo em regiões
   menos curadas). Para adicionar/traduzir mais territórios, edite
-  `CURATED_TERRITORIES`.
+  `CURATED_TERRITORIES`. O rótulo é posicionado no centro de massa do
+  território, "grudado" na área visível quando esse centro cai fora da
+  tela — do contrário um território enorme (ex.: um domínio nômade que
+  cobre metade do continente) perderia o rótulo sempre que você olhasse
+  para apenas um pedaço dele.
+- **Territórios sem nome no dataset**: aparecem com opacidade bem baixa
+  (quase se misturando ao oceano) em vez da mesma cor sólida de um
+  território real — no dataset original, esses polígonos representam
+  terra sem um estado/povo definido atribuído naquele período, não é
+  erro de carregamento.
 - **Conteúdo curado**: clicar num território consulta `/api/empires?name=...`,
   que busca no Postgres (via Prisma) uma descrição para aquele nome. Sem
   `DATABASE_URL` configurado, o mapa funciona normalmente e só não mostra

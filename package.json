@@ -17,6 +17,7 @@
     "@prisma/adapter-neon": "^7.8.0",
     "@prisma/client": "^7.8.0",
     "@turf/area": "^7.3.5",
+    "@turf/bbox": "^7.3.5",
     "@turf/center-of-mass": "^7.3.5",
     "@types/ws": "^8.18.1",
     "maplibre-gl": "^5.24.0",

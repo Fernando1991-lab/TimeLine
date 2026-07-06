@@ -1,4 +1,5 @@
 import area from "@turf/area";
+import bbox from "@turf/bbox";
 import centerOfMass from "@turf/center-of-mass";
 import type { Feature, FeatureCollection, Geometry } from "geojson";
 import { CURATED_TERRITORIES, translateTerritoryName } from "@/lib/curatedTerritories";
@@ -10,7 +11,9 @@ export type TerritoryLabel = {
   lat: number;
 };
 
-type LabelCandidate = TerritoryLabel & { area: number; tier: number };
+type BBox = { minX: number; minY: number; maxX: number; maxY: number };
+
+type LabelCandidate = TerritoryLabel & { area: number; tier: number; bbox: BBox };
 
 export type ViewportBounds = {
   west: number;
@@ -27,9 +30,10 @@ export type ViewportBounds = {
 const GENERIC_SOCIETY_PATTERN =
   /hunt(?:er|ing)|forag(?:er|ing)|gatherers?$|nomad|pastoral(?:ist)?s?|shifting cultivators|chiefdoms?$|farmers$|cultures?$|tribes?$|Khoi\w*san|Bant[ou]|Siberians?$|Semites|Austronesians|Dravidians/i;
 
-// Area/centroid computation (via turf) is the expensive part, so it's
-// done once per snapshot and cached by the caller — selectVisibleLabels
-// below is the cheap part that can re-run on every map pan/zoom.
+// Area/centroid/bbox computation (via turf) is the expensive part, so
+// it's done once per snapshot and cached by the caller —
+// selectVisibleLabels below is the cheap part that can re-run on every
+// map pan/zoom.
 export function computeLabelCandidates(featureCollection: FeatureCollection): LabelCandidate[] {
   const candidates = featureCollection.features
     .map((feature) => {
@@ -48,9 +52,12 @@ export function computeLabelCandidates(featureCollection: FeatureCollection): La
       if (!featureArea) return null;
 
       let lng: number, lat: number;
+      let box: BBox;
       try {
         const center = centerOfMass(feature as Feature<Geometry>);
         [lng, lat] = center.geometry.coordinates;
+        const [minX, minY, maxX, maxY] = bbox(feature as Feature<Geometry>);
+        box = { minX, minY, maxX, maxY };
       } catch {
         return null;
       }
@@ -59,7 +66,15 @@ export function computeLabelCandidates(featureCollection: FeatureCollection): La
       const isCurated = name in CURATED_TERRITORIES;
       const isGenericSociety = !isCurated && GENERIC_SOCIETY_PATTERN.test(name);
       const tier = isCurated ? 0 : isGenericSociety ? 2 : 1;
-      return { name: translateTerritoryName(name), color, lng, lat, area: featureArea, tier };
+      return {
+        name: translateTerritoryName(name),
+        color,
+        lng,
+        lat,
+        area: featureArea,
+        tier,
+        bbox: box,
+      };
     })
     .filter((candidate): candidate is LabelCandidate => candidate !== null);
 
@@ -79,12 +94,35 @@ export function labelLimitForZoom(zoom: number): number {
   return 90;
 }
 
-function isWithinBounds(lng: number, lat: number, bounds: ViewportBounds): boolean {
+function clamp(value: number, min: number, max: number): number {
+  return Math.min(Math.max(value, min), max);
+}
+
+// A territory only needs to *overlap* the viewport to be worth a label —
+// otherwise a huge territory whose centroid sits far outside the current
+// view (because you're zoomed into just one edge of it) never gets one,
+// even though most of the screen is that territory's color.
+function bboxIntersectsBounds(box: BBox, bounds: ViewportBounds): boolean {
   if (bounds.west <= bounds.east) {
-    return lng >= bounds.west && lng <= bounds.east && lat >= bounds.south && lat <= bounds.north;
+    return box.minX <= bounds.east && box.maxX >= bounds.west && box.minY <= bounds.north && box.maxY >= bounds.south;
   }
   // Viewport crosses the antimeridian (west > east).
-  return (lng >= bounds.west || lng <= bounds.east) && lat >= bounds.south && lat <= bounds.north;
+  return (box.minX <= bounds.east || box.maxX >= bounds.west) && box.minY <= bounds.north && box.maxY >= bounds.south;
+}
+
+// Places the label at the centroid when it's already visible, or at the
+// nearest point still inside both the viewport and the territory's own
+// bounding box otherwise — so the label always lands somewhere on
+// screen, roughly "towards" the true centroid.
+function labelPositionInView(candidate: LabelCandidate, bounds: ViewportBounds) {
+  const west = Math.max(candidate.bbox.minX, bounds.west);
+  const east = Math.min(candidate.bbox.maxX, bounds.east);
+  const south = Math.max(candidate.bbox.minY, bounds.south);
+  const north = Math.min(candidate.bbox.maxY, bounds.north);
+  return {
+    lng: clamp(candidate.lng, Math.min(west, east), Math.max(west, east)),
+    lat: clamp(candidate.lat, Math.min(south, north), Math.max(south, north)),
+  };
 }
 
 // Only the largest/most important territories currently on screen get a
@@ -92,13 +130,26 @@ function isWithinBounds(lng: number, lat: number, bounds: ViewportBounds): boole
 // without turning small city-states and enclaves into unreadable
 // clutter. Curated entries (see curatedTerritories.ts) always outrank
 // the area-based heuristic.
+//
+// `bounds` (padded, for the inclusion test) and `clampBounds` (the
+// actual on-screen viewport, for placement) are deliberately separate:
+// clamping into the padded box would let a label land in the padding
+// margin, which is off-screen.
 export function selectVisibleLabels(
   candidates: LabelCandidate[],
-  { limit, bounds }: { limit: number; bounds?: ViewportBounds }
+  {
+    limit,
+    bounds,
+    clampBounds,
+  }: { limit: number; bounds?: ViewportBounds; clampBounds?: ViewportBounds }
 ): TerritoryLabel[] {
   const visible = bounds
-    ? candidates.filter((candidate) => isWithinBounds(candidate.lng, candidate.lat, bounds))
+    ? candidates.filter((candidate) => bboxIntersectsBounds(candidate.bbox, bounds))
     : candidates;
+  const positionBounds = clampBounds ?? bounds;
 
-  return visible.slice(0, limit).map(({ name, color, lng, lat }) => ({ name, color, lng, lat }));
+  return visible.slice(0, limit).map((candidate) => {
+    const { lng, lat } = positionBounds ? labelPositionInView(candidate, positionBounds) : candidate;
+    return { name: candidate.name, color: candidate.color, lng, lat };
+  });
 }
