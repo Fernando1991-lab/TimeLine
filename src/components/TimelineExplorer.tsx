@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import type { TimelineSnapshot } from "@/lib/timeline";
 import TimelineSlider from "@/components/TimelineSlider";
+import { translateTerritoryName } from "@/lib/curatedTerritories";
 
 const EmpireMap = dynamic(() => import("@/components/EmpireMap"), {
   ssr: false,
@@ -76,7 +77,7 @@ export default function TimelineExplorer() {
         <div className="absolute right-4 top-4 w-72 rounded-xl bg-white/95 p-4 shadow-lg backdrop-blur dark:bg-zinc-900/95">
           <div className="flex items-start justify-between gap-2">
             <h2 className="text-base font-semibold text-zinc-900 dark:text-zinc-100">
-              {selected}
+              {translateTerritoryName(selected)}
             </h2>
             <button
               type="button"

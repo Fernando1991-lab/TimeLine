@@ -22,6 +22,16 @@ MapLibre GL e Prisma/Neon.
 - **Slider**: `src/components/TimelineSlider.tsx` navega pelos snapshots
   disponíveis (não é uma escala contínua de anos — pula de snapshot em
   snapshot) e tem play/pause automático.
+- **Rótulos no mapa**: `src/lib/territoryLabels.ts` mostra o nome dos
+  territórios mais importantes de cada período (limitado a 12 por padrão,
+  via marcadores HTML — não usamos `symbol` layers do MapLibre para evitar
+  depender de um servidor de fontes/glyphs externo). O ranking prioriza
+  estados/impérios nomeados (curados em `src/lib/curatedTerritories.ts`)
+  sobre regiões genéricas de "caçadores-coletores"/"nômades" do dataset,
+  que são enormes em área mas pouco relevantes historicamente. Nomes em
+  português também vêm desse arquivo curado — é uma lista manual, não
+  cobre 100% dos nomes do dataset (o que não está lá aparece em inglês).
+  Para adicionar/traduzir mais territórios, edite `CURATED_TERRITORIES`.
 - **Conteúdo curado**: clicar num território consulta `/api/empires?name=...`,
   que busca no Postgres (via Prisma) uma descrição para aquele nome. Sem
   `DATABASE_URL` configurado, o mapa funciona normalmente e só não mostra
