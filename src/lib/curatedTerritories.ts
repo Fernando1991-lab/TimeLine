@@ -38,8 +38,15 @@ export const CURATED_TERRITORIES: Record<string, string> = {
   "Seleucid Kingdom": "Reino Selêucida",
   "Ptolemaic Kingdom": "Reino Ptolomaico",
   "Byzantine Empire": "Império Bizantino",
+  "Eastern Roman Empire": "Império Romano do Oriente",
   "Holy Roman Empire": "Sacro Império Romano-Germânico",
   "Papal States": "Estados Papais",
+  "Roman Republic": "República Romana",
+  "Rome (Maximian)": "Roma (Maximiano)",
+  "Rome (Constantinus)": "Roma (Constantino)",
+  Sarmates: "Sármatas",
+  Cimerians: "Cimérios",
+  "Hurrian Kingdoms": "Reinos Hurritas",
 
   // South / Central / East Asia (ancient–medieval)
   Xiongnu: "Xiongnu",
@@ -79,6 +86,27 @@ export const CURATED_TERRITORIES: Record<string, string> = {
   Champa: "Champa",
   "Đại Việt": "Đại Việt",
   Vietnam: "Vietnã",
+  "Saka Kingdom": "Reino Saka",
+  "Suren Kingdom": "Reino Suren",
+  Satavahanihara: "Satavahana",
+  "Hindu kingdoms": "Reinos Hindus",
+  "Hindu kingdoms and republics": "Reinos e Repúblicas Hindus",
+  Magadha: "Magadha",
+  "Zhow states": "Estados Zhou",
+  "Zhou states": "Estados Zhou",
+  Zhoa: "Estados Zhou",
+  "Zhangzhung Kingdom": "Reino de Zhangzhung",
+  Yuezhi: "Yuezhi",
+  Sinic: "Estados Sínicos",
+  "Toba Wei": "Dinastia Wei do Norte",
+  Ruanruan: "Canato Ruanruan",
+  "Tufan Empire": "Império Tibetano",
+  Tungus: "Tungues",
+  "Western Gokturk Khaganate": "Canato Turco Ocidental (Göktürks)",
+  "Oghuz Turks": "Turcos Oguzes",
+  Koreans: "Coreanos",
+  Tibetans: "Tibetanos",
+  "Tibeto-Burmanese": "Tibeto-Birmaneses",
 
   // Steppe / Central Asian empires
   Mongols: "Mongóis",
@@ -163,6 +191,11 @@ export const CURATED_TERRITORIES: Record<string, string> = {
   "French West Africa": "África Ocidental Francesa",
   "French Equatorial Africa": "África Equatorial Francesa",
   "Saudi Arabia": "Arábia Saudita",
+  Axum: "Reino de Axum",
+  Meroe: "Reino de Meroë",
+  Kerma: "Reino de Kerma",
+  Berbers: "Berberes",
+  Tuaregs: "Tuaregues",
 
   // Oceania / other modern
   Australia: "Austrália",
@@ -172,6 +205,20 @@ export const CURATED_TERRITORIES: Record<string, string> = {
   Kazakhstan: "Cazaquistão",
   Greenland: "Groenlândia",
   Antarctica: "Antártida",
+
+  // Prehistoric/Bronze Age cultures and peoples
+  Saami: "Samis",
+  Andronovo: "Cultura Andronovo",
+  Afanasevo: "Cultura Afanasevo",
+  Thai: "Tais",
+  "Oxus": "Civilização do Oxus",
+  Beaker: "Cultura Campaniforme",
+  "city-states": "Cidades-Estado",
+  Ainu: "Ainos",
+  Jōmon: "Cultura Jomon",
+  Valdivia: "Valdivia",
+  Namazga: "Cultura Namazga",
+  "minor states": "Estados menores",
 };
 
 export function translateTerritoryName(name: string): string {

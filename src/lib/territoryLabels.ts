@@ -16,7 +16,7 @@ export type TerritoryLabel = {
 // states under them. Treat these as lower priority than named
 // states/empires, which is what "important" means for this map.
 const GENERIC_SOCIETY_PATTERN =
-  /hunter|forager|gatherers?$|nomad|pastoral(?:ist)?s?|shifting cultivators|chiefdoms?$|farmers$|cultures?$|tribes?$|Khoi\w*san|Bant[ou]|Siberians?$|Semites|Austronesians|Dravidians/i;
+  /hunt(?:er|ing)|forag(?:er|ing)|gatherers?$|nomad|pastoral(?:ist)?s?|shifting cultivators|chiefdoms?$|farmers$|cultures?$|tribes?$|Khoi\w*san|Bant[ou]|Siberians?$|Semites|Austronesians|Dravidians/i;
 
 // Only the largest territories get a label — enough to read as "which
 // empire/people controls this region" without turning small city-states
