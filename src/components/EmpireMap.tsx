@@ -151,11 +151,13 @@ export default function EmpireMap({ snapshot, onSelectTerritory }: Props) {
         type: "fill",
         source: SOURCE_ID,
         paint: {
-          "fill-color": ["coalesce", ["get", "__color"], "#c9c9c9"],
+          "fill-color": ["coalesce", ["get", "__color"], "#8a8a7d"],
           // Land with no state/people assigned in the dataset for this
-          // period fades toward the ocean color instead of reading as a
-          // same-weight "mystery country" next to real territories.
-          "fill-opacity": ["case", ["get", "__hasName"], 0.65, 0.12],
+          // period reads as muted, neutral-toned "no data" — dim enough
+          // to recede next to real territories, but still clearly land,
+          // not blended into the ocean color (that read as "is this sea
+          // or land nobody owns?").
+          "fill-opacity": ["case", ["get", "__hasName"], 0.65, 0.45],
         },
       });
       map.addLayer({
@@ -165,7 +167,7 @@ export default function EmpireMap({ snapshot, onSelectTerritory }: Props) {
         paint: {
           "line-color": "#2b2b2b",
           "line-width": 0.6,
-          "line-opacity": ["case", ["get", "__hasName"], 0.5, 0.15],
+          "line-opacity": ["case", ["get", "__hasName"], 0.5, 0.3],
         },
       });
 
