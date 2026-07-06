@@ -1,0 +1,27 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// Curated content for a territory/empire shown in the map's side panel.
+// `name` is matched against the NAME/SUBJECTO property of the GeoJSON
+// features in public/data/historical-basemaps — it is not a foreign key,
+// since the source dataset has no stable IDs across snapshots.
+model Empire {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  description String
+  startYear   Int?
+  endYear     Int?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
