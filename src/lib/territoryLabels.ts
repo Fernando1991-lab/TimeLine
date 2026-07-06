@@ -1,7 +1,9 @@
 import area from "@turf/area";
 import bbox from "@turf/bbox";
+import booleanIntersects from "@turf/boolean-intersects";
 import centerOfMass from "@turf/center-of-mass";
-import type { Feature, FeatureCollection, Geometry } from "geojson";
+import { polygon as turfPolygon } from "@turf/helpers";
+import type { Feature, FeatureCollection, Geometry, Polygon } from "geojson";
 import { CURATED_TERRITORIES, translateTerritoryName } from "@/lib/curatedTerritories";
 
 export type TerritoryLabel = {
@@ -13,7 +15,12 @@ export type TerritoryLabel = {
 
 type BBox = { minX: number; minY: number; maxX: number; maxY: number };
 
-type LabelCandidate = TerritoryLabel & { area: number; tier: number; bbox: BBox };
+type LabelCandidate = TerritoryLabel & {
+  area: number;
+  tier: number;
+  bbox: BBox;
+  geometry: Geometry;
+};
 
 export type ViewportBounds = {
   west: number;
@@ -61,6 +68,7 @@ export function computeLabelCandidates(featureCollection: FeatureCollection): La
       } catch {
         return null;
       }
+      if (!feature.geometry) return null;
 
       const color = (feature.properties?.__color as string) ?? "#c9c9c9";
       const isCurated = name in CURATED_TERRITORIES;
@@ -74,6 +82,7 @@ export function computeLabelCandidates(featureCollection: FeatureCollection): La
         area: featureArea,
         tier,
         bbox: box,
+        geometry: feature.geometry,
       };
     })
     .filter((candidate): candidate is LabelCandidate => candidate !== null);
@@ -98,16 +107,54 @@ function clamp(value: number, min: number, max: number): number {
   return Math.min(Math.max(value, min), max);
 }
 
-// A territory only needs to *overlap* the viewport to be worth a label —
-// otherwise a huge territory whose centroid sits far outside the current
-// view (because you're zoomed into just one edge of it) never gets one,
-// even though most of the screen is that territory's color.
 function bboxIntersectsBounds(box: BBox, bounds: ViewportBounds): boolean {
   if (bounds.west <= bounds.east) {
     return box.minX <= bounds.east && box.maxX >= bounds.west && box.minY <= bounds.north && box.maxY >= bounds.south;
   }
   // Viewport crosses the antimeridian (west > east).
   return (box.minX <= bounds.east || box.maxX >= bounds.west) && box.minY <= bounds.north && box.maxY >= bounds.south;
+}
+
+function boundsToPolygon(bounds: ViewportBounds): Feature<Polygon> | null {
+  // Antimeridian-crossing viewports aren't handled here — bboxIntersectsBounds
+  // (already lenient in that case) is the only filter that applies then.
+  if (bounds.west > bounds.east) return null;
+  const { west, east, south, north } = bounds;
+  return turfPolygon([
+    [
+      [west, south],
+      [east, south],
+      [east, north],
+      [west, north],
+      [west, south],
+    ],
+  ]);
+}
+
+// A territory only needs to *overlap* the viewport to be worth a label —
+// otherwise a huge territory whose centroid sits far outside the current
+// view (because you're zoomed into just one edge of it) never gets one,
+// even though most of the screen is that territory's color. A plain
+// bounding-box check isn't precise enough though: a large, non-convex or
+// far-flung territory's bbox can overlap almost any viewport in its
+// latitude band even when none of its actual shape is on screen, which
+// would use up label slots that should go to territories genuinely
+// visible. So bbox is only a cheap pre-filter — the real check clips
+// against the actual polygon.
+function isActuallyVisible(
+  candidate: LabelCandidate,
+  bounds: ViewportBounds,
+  viewportPolygon: Feature<Polygon> | null
+): boolean {
+  if (!bboxIntersectsBounds(candidate.bbox, bounds)) return false;
+  if (!viewportPolygon) return true;
+  try {
+    return booleanIntersects(candidate.geometry, viewportPolygon);
+  } catch {
+    // Malformed geometry from the source data — fall back to the bbox
+    // result rather than dropping the label entirely.
+    return true;
+  }
 }
 
 // Places the label at the centroid when it's already visible, or at the
@@ -143,8 +190,9 @@ export function selectVisibleLabels(
     clampBounds,
   }: { limit: number; bounds?: ViewportBounds; clampBounds?: ViewportBounds }
 ): TerritoryLabel[] {
+  const viewportPolygon = bounds ? boundsToPolygon(bounds) : null;
   const visible = bounds
-    ? candidates.filter((candidate) => bboxIntersectsBounds(candidate.bbox, bounds))
+    ? candidates.filter((candidate) => isActuallyVisible(candidate, bounds, viewportPolygon))
     : candidates;
   const positionBounds = clampBounds ?? bounds;
 

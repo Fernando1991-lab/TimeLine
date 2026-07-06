@@ -29,7 +29,12 @@ MapLibre GL e Prisma/Neon.
   ~90 num continente/região) e só mostra o que está dentro da área visível
   — é assim que territórios pequenos mas importantes (Babilônia, por
   exemplo) aparecem ao aproximar, mesmo sem entrar no ranking global por
-  área. O ranking prioriza estados/impérios nomeados (curados em
+  área. A checagem de "está visível?" usa a geometria real do território
+  (via `@turf/boolean-intersects`), não só a caixa delimitadora — senão um
+  território enorme e irregular (ex.: um domínio que se estende por meio
+  continente) "reservava" a vaga de rótulo em qualquer tela que sua caixa
+  delimitadora tocasse, mesmo estando de fato bem longe dali, fazendo
+  territórios realmente visíveis ficarem sem nome. O ranking prioriza estados/impérios nomeados (curados em
   `src/lib/curatedTerritories.ts`) sobre regiões genéricas de
   "caçadores-coletores"/"nômades" do dataset, que são enormes em área mas
   pouco relevantes historicamente. Nomes em português também vêm desse
