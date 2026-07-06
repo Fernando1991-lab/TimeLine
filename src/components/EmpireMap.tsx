@@ -5,10 +5,15 @@ import maplibregl, { type Map as MapLibreMap } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import type { TimelineSnapshot } from "@/lib/timeline";
 import { colorForTerritory } from "@/lib/territoryColor";
+import { topTerritoryLabels } from "@/lib/territoryLabels";
 
 const SOURCE_ID = "territories";
 const FILL_LAYER_ID = "territories-fill";
 const LINE_LAYER_ID = "territories-line";
+
+// Only the biggest territories get a label, so the map stays readable
+// instead of drowning in tiny city-state/enclave names.
+const MAX_LABELS = 12;
 
 // Plain ocean-colored background instead of a hosted basemap style: the
 // territory polygons are the whole point of this map, and this keeps the
@@ -50,9 +55,25 @@ async function loadSnapshot(file: string): Promise<GeoJSON.FeatureCollection> {
   return data;
 }
 
+function createLabelElement(name: string, color: string): HTMLDivElement {
+  const el = document.createElement("div");
+  el.textContent = name;
+  el.style.pointerEvents = "none";
+  el.style.whiteSpace = "nowrap";
+  el.style.fontSize = "12px";
+  el.style.fontWeight = "600";
+  el.style.color = "#1a1a1a";
+  el.style.textShadow =
+    "0 1px 2px rgba(255,255,255,0.9), 0 -1px 2px rgba(255,255,255,0.9), 1px 0 2px rgba(255,255,255,0.9), -1px 0 2px rgba(255,255,255,0.9)";
+  el.style.borderBottom = `2px solid ${color}`;
+  el.style.padding = "0 1px";
+  return el;
+}
+
 export default function EmpireMap({ snapshot, onSelectTerritory }: Props) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
+  const labelMarkersRef = useRef<maplibregl.Marker[]>([]);
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -112,6 +133,8 @@ export default function EmpireMap({ snapshot, onSelectTerritory }: Props) {
 
     mapRef.current = map;
     return () => {
+      labelMarkersRef.current.forEach((marker) => marker.remove());
+      labelMarkersRef.current = [];
       map.remove();
       mapRef.current = null;
       setReady(false);
@@ -129,6 +152,13 @@ export default function EmpireMap({ snapshot, onSelectTerritory }: Props) {
       if (cancelled) return;
       const source = map.getSource(SOURCE_ID) as maplibregl.GeoJSONSource | undefined;
       source?.setData(data);
+
+      labelMarkersRef.current.forEach((marker) => marker.remove());
+      labelMarkersRef.current = topTerritoryLabels(data, MAX_LABELS).map((label) =>
+        new maplibregl.Marker({ element: createLabelElement(label.name, label.color), anchor: "center" })
+          .setLngLat([label.lng, label.lat])
+          .addTo(map)
+      );
     });
 
     return () => {
