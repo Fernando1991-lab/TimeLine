@@ -62,6 +62,19 @@ MapLibre GL e Prisma/Neon.
   (ou a mais próxima). É uma lista curada dos ~150 estados/civilizações mais
   importantes — territórios fora dela mostram um aviso de fallback. Para
   adicionar/editar, mexa em `TERRITORY_SUMMARIES`.
+- **Reivindicações coloniais (camada curada nossa)**: o dataset representa
+  as Américas/África/Ásia sobretudo por *povos* (indígenas) e não desenha
+  as colônias europeias da era moderna. Para preencher essa lacuna,
+  `src/lib/colonialClaims.ts` adiciona uma camada *nossa*, sobreposta à
+  fonte, com as principais reivindicações coloniais (Portugal, Espanha,
+  França, Grã-Bretanha, Países Baixos) para 1500, 1600 e 1700. São
+  renderizadas com hachura + contorno tracejado (a convenção de "reivindicação",
+  distinta de território sólido), rotuladas e clicáveis com resumo próprio.
+  **As geometrias são propositalmente esquemáticas e aproximadas** — regiões
+  amplas, não fronteiras precisas; "controle colonial" nessa época é fuzzy
+  (costa efetivamente ocupada vs. reivindicação por tratado vs. esfera de
+  influência). A legenda deixa isso explícito. É assim que o Brasil
+  português aparece na costa em 1500/1600, junto com o interior indígena.
 - **Postgres/Neon (opcional, legado)**: o projeto ainda inclui um schema
   Prisma, um seed e a rota `/api/empires` de uma abordagem anterior baseada
   em banco. Não é mais usada pelo painel (os resumos agora são estáticos),

@@ -6,6 +6,7 @@ import type { TimelineSnapshot } from "@/lib/timeline";
 import TimelineSlider from "@/components/TimelineSlider";
 import { translateTerritoryName } from "@/lib/curatedTerritories";
 import { summaryFor } from "@/lib/territorySummaries";
+import { colonialSummary } from "@/lib/colonialClaims";
 
 const EmpireMap = dynamic(() => import("@/components/EmpireMap"), {
   ssr: false,
@@ -34,12 +35,13 @@ export default function TimelineExplorer() {
   }, []);
 
   const currentYear = snapshots?.[index]?.year;
-  // Era-aware summary comes from the pre-generated static module — no
-  // network call, works offline.
-  const eraSummary =
-    selected != null && currentYear != null ? summaryFor(selected, currentYear) : null;
+  // Colonial-overlay claims have their own curated summary; otherwise
+  // fall back to the era-aware territory summary. Both are static
+  // (no network call, works offline).
   const panelText =
-    eraSummary ?? "Ainda não há um resumo para este território neste período.";
+    (selected != null ? colonialSummary(selected) : null) ??
+    (selected != null && currentYear != null ? summaryFor(selected, currentYear) : null) ??
+    "Ainda não há um resumo para este território neste período.";
 
   if (!snapshots) {
     return (
@@ -53,10 +55,17 @@ export default function TimelineExplorer() {
     <div className="relative h-full w-full">
       <EmpireMap snapshot={snapshots[index]} onSelectTerritory={setSelected} />
 
-      <div className="pointer-events-none absolute left-3 top-3 max-w-[15rem] rounded-lg bg-white/85 px-3 py-2 text-xs leading-snug text-zinc-600 shadow-sm backdrop-blur dark:bg-zinc-900/85 dark:text-zinc-300">
-        <span className="mr-1 inline-block h-2.5 w-2.5 translate-y-px rounded-sm bg-[#8a8a7d]/45 align-middle" />
-        Áreas acinzentadas (<em>sem dados</em>): a fonte histórica não registra
-        um povo ou estado definido ali naquele período.
+      <div className="pointer-events-none absolute left-3 top-3 max-w-[16rem] space-y-1 rounded-lg bg-white/85 px-3 py-2 text-xs leading-snug text-zinc-600 shadow-sm backdrop-blur dark:bg-zinc-900/85 dark:text-zinc-300">
+        <p>
+          <span className="mr-1 inline-block h-2.5 w-2.5 translate-y-px rounded-sm bg-[#8a8a7d]/45 align-middle" />
+          Áreas acinzentadas (<em>sem dados</em>): a fonte histórica não registra
+          um povo ou estado definido ali naquele período.
+        </p>
+        <p>
+          <span className="mr-1 inline-block h-2 w-3.5 translate-y-px border-b-2 border-dashed border-zinc-500 align-middle" />
+          Contornos tracejados: reivindicações coloniais europeias
+          (curadas por nós, aproximadas e esquemáticas).
+        </p>
       </div>
 
       {selected && (
