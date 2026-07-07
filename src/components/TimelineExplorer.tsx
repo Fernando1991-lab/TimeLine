@@ -3,10 +3,14 @@
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import type { TimelineSnapshot } from "@/lib/timeline";
+import { nearestSnapshotIndex } from "@/lib/timeline";
 import TimelineSlider from "@/components/TimelineSlider";
+import TerritorySearch from "@/components/TerritorySearch";
 import { translateTerritoryName } from "@/lib/curatedTerritories";
 import { summaryFor } from "@/lib/territorySummaries";
 import { colonialSummary } from "@/lib/colonialClaims";
+import type { TerritoryIndexEntry, TerritorySearchResult } from "@/lib/territorySearch";
+import type { FlyToRequest } from "@/components/EmpireMap";
 
 const EmpireMap = dynamic(() => import("@/components/EmpireMap"), {
   ssr: false,
@@ -22,6 +26,8 @@ export default function TimelineExplorer() {
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
+  const [territoryIndex, setTerritoryIndex] = useState<TerritoryIndexEntry[]>([]);
+  const [flyTo, setFlyTo] = useState<FlyToRequest | null>(null);
 
   useEffect(() => {
     fetch("/data/historical-basemaps/manifest.json")
@@ -32,7 +38,18 @@ export default function TimelineExplorer() {
         const start = data.findIndex((snapshot) => snapshot.year === -323);
         setIndex(start >= 0 ? start : Math.floor(data.length / 2));
       });
+    fetch("/data/historical-basemaps/territory-index.json")
+      .then((response) => response.json())
+      .then((data: TerritoryIndexEntry[]) => setTerritoryIndex(data));
   }, []);
+
+  function handleSearchSelect(result: TerritorySearchResult) {
+    if (snapshots) {
+      setIndex(nearestSnapshotIndex(snapshots, result.year));
+    }
+    setSelected(result.name);
+    setFlyTo((prev) => ({ lng: result.lng, lat: result.lat, zoom: 4, nonce: (prev?.nonce ?? 0) + 1 }));
+  }
 
   const currentYear = snapshots?.[index]?.year;
   // Colonial-overlay claims have their own curated summary; otherwise
@@ -53,9 +70,15 @@ export default function TimelineExplorer() {
 
   return (
     <div className="relative h-full w-full">
-      <EmpireMap snapshot={snapshots[index]} onSelectTerritory={setSelected} />
+      <EmpireMap snapshot={snapshots[index]} onSelectTerritory={setSelected} flyTo={flyTo} />
 
-      <div className="pointer-events-none absolute left-3 top-3 max-w-[16rem] space-y-1 rounded-lg bg-white/85 px-3 py-2 text-xs leading-snug text-zinc-600 shadow-sm backdrop-blur dark:bg-zinc-900/85 dark:text-zinc-300">
+      <div className="pointer-events-none absolute left-3 top-3 flex flex-col items-start gap-2">
+        <div className="pointer-events-auto">
+          <TerritorySearch index={territoryIndex} onSelect={handleSearchSelect} />
+        </div>
+      </div>
+
+      <div className="pointer-events-none absolute left-3 top-16 max-w-[16rem] space-y-1 rounded-lg bg-white/85 px-3 py-2 text-xs leading-snug text-zinc-600 shadow-sm backdrop-blur dark:bg-zinc-900/85 dark:text-zinc-300">
         <p>
           <span className="mr-1 inline-block h-2.5 w-2.5 translate-y-px rounded-sm bg-[#8a8a7d]/45 align-middle" />
           Áreas acinzentadas (<em>sem dados</em>): a fonte histórica não registra

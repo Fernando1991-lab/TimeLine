@@ -65,6 +65,17 @@ MapLibre GL e Prisma/Neon.
   que aparece ao clicar em boa parte da América do Sul antes da colonização).
   Territórios fora dessa lista mostram um aviso de fallback. Para
   adicionar/editar, mexa em `TERRITORY_SUMMARIES`.
+- **Busca de território**: campo de busca no canto superior esquerdo
+  (`src/components/TerritorySearch.tsx`) para achar um território pelo nome
+  em português sem precisar navegar o mapa manualmente. Ao escolher um
+  resultado, o app pula para o ano em que aquele território teve sua maior
+  extensão territorial (seu "auge", pré-calculado — veja abaixo), centraliza
+  o mapa nele e já abre o resumo. O índice de busca
+  (`public/data/historical-basemaps/territory-index.json`) é gerado por
+  `scripts/build-territory-index.mjs`, que varre todos os snapshots e
+  guarda, para cada um dos ~1720 territórios nomeados, o ano/centro de
+  maior área — rode `npm run data:territory-index` depois de adicionar ou
+  editar anos do dataset.
 - **Reivindicações coloniais (camada curada nossa)**: o dataset representa
   as Américas/África/Ásia sobretudo por *povos* (indígenas) e não desenha
   as colônias europeias da era moderna. Para preencher essa lacuna,
@@ -127,3 +138,5 @@ mais entradas ali conforme for curando conteúdo.
 - `npm run db:seed` — popula os impérios de exemplo
 - `npm run data:manifest` — regenera `manifest.json` a partir dos arquivos
   `world_*.geojson` em `public/data/historical-basemaps/`
+- `npm run data:territory-index` — regenera `territory-index.json` (índice
+  usado pela busca de território) a partir dos mesmos arquivos

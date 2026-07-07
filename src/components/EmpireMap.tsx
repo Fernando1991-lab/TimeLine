@@ -39,9 +39,20 @@ const BASE_STYLE: maplibregl.StyleSpecification = {
   ],
 };
 
+export type FlyToRequest = {
+  lng: number;
+  lat: number;
+  zoom: number;
+  // Bumped on every request so the effect re-fires even when the
+  // target coordinates are identical to the previous request (e.g.
+  // picking the same search result twice in a row).
+  nonce: number;
+};
+
 type Props = {
   snapshot: TimelineSnapshot;
   onSelectTerritory: (name: string | null) => void;
+  flyTo?: FlyToRequest | null;
 };
 
 type LabelCandidates = ReturnType<typeof computeLabelCandidates>;
@@ -187,7 +198,7 @@ function padBounds(bounds: ViewportBounds, paddingRatio: number): ViewportBounds
   };
 }
 
-export default function EmpireMap({ snapshot, onSelectTerritory }: Props) {
+export default function EmpireMap({ snapshot, onSelectTerritory, flyTo }: Props) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
   const labelMarkersRef = useRef<maplibregl.Marker[]>([]);
@@ -365,6 +376,14 @@ export default function EmpireMap({ snapshot, onSelectTerritory }: Props) {
       cancelled = true;
     };
   }, [ready, snapshot]);
+
+  useEffect(() => {
+    if (!ready || !flyTo) return;
+    const map = mapRef.current;
+    if (!map) return;
+    map.flyTo({ center: [flyTo.lng, flyTo.lat], zoom: flyTo.zoom });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ready, flyTo?.nonce]);
 
   return <div ref={containerRef} className="h-full w-full" />;
 }

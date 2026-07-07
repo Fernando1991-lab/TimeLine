@@ -10,7 +10,8 @@
     "postinstall": "prisma generate",
     "db:migrate": "prisma migrate dev",
     "db:seed": "prisma db seed",
-    "data:manifest": "node scripts/build-manifest.mjs"
+    "data:manifest": "node scripts/build-manifest.mjs",
+    "data:territory-index": "node scripts/build-territory-index.mjs"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.1.0",
