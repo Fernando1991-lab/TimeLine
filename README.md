@@ -52,10 +52,21 @@ MapLibre GL e Prisma/Neon.
   representam terra sem um estado/povo definido atribuído naquele
   período, não é erro de carregamento. Uma legenda no canto explica isso,
   e as maiores dessas áreas ganham uma nota discreta "sem dados" no mapa.
-- **Conteúdo curado**: clicar num território consulta `/api/empires?name=...`,
-  que busca no Postgres (via Prisma) uma descrição para aquele nome. Sem
-  `DATABASE_URL` configurado, o mapa funciona normalmente e só não mostra
-  descrição nenhuma (fallback gracioso).
+- **Resumo por época**: clicar num território abre um painel com um resumo
+  histórico daquele lugar **na era mostrada no slider** — clicar em "China"
+  em 1 a.C. mostra a dinastia Han; em 1700, a dinastia Qing; em 2010, a
+  China moderna. Os resumos são pré-gerados e ficam em
+  `src/lib/territorySummaries.ts` (nenhuma chamada de API/rede em tempo de
+  execução — funciona 100% offline). Cada território tem uma ou mais faixas
+  de anos com texto próprio; a busca escolhe a faixa que contém o ano atual
+  (ou a mais próxima). É uma lista curada dos ~150 estados/civilizações mais
+  importantes — territórios fora dela mostram um aviso de fallback. Para
+  adicionar/editar, mexa em `TERRITORY_SUMMARIES`.
+- **Postgres/Neon (opcional, legado)**: o projeto ainda inclui um schema
+  Prisma, um seed e a rota `/api/empires` de uma abordagem anterior baseada
+  em banco. Não é mais usada pelo painel (os resumos agora são estáticos),
+  mas fica disponível caso você queira armazenar conteúdo editável num
+  banco no futuro.
 
 ## Setup local
 

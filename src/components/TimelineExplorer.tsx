@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import type { TimelineSnapshot } from "@/lib/timeline";
 import TimelineSlider from "@/components/TimelineSlider";
 import { translateTerritoryName } from "@/lib/curatedTerritories";
+import { summaryFor } from "@/lib/territorySummaries";
 
 const EmpireMap = dynamic(() => import("@/components/EmpireMap"), {
   ssr: false,
@@ -15,19 +16,11 @@ const EmpireMap = dynamic(() => import("@/components/EmpireMap"), {
   ),
 });
 
-type EmpireDetails = {
-  name: string;
-  description: string | null;
-  startYear: number | null;
-  endYear: number | null;
-};
-
 export default function TimelineExplorer() {
   const [snapshots, setSnapshots] = useState<TimelineSnapshot[] | null>(null);
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
-  const [details, setDetails] = useState<EmpireDetails | null>(null);
 
   useEffect(() => {
     fetch("/data/historical-basemaps/manifest.json")
@@ -40,26 +33,13 @@ export default function TimelineExplorer() {
       });
   }, []);
 
-  useEffect(() => {
-    if (!selected) return;
-    let cancelled = false;
-    fetch(`/api/empires?name=${encodeURIComponent(selected)}`)
-      .then((response) => (response.ok ? response.json() : null))
-      .then((data) => {
-        if (!cancelled) setDetails(data);
-      })
-      .catch(() => {
-        if (!cancelled) setDetails(null);
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, [selected]);
-
-  // Only trust `details` while it matches the currently selected
-  // territory — avoids a separate effect-based reset when `selected`
-  // changes (and the flicker of clearing then refetching).
-  const activeDetails = details?.name === selected ? details : null;
+  const currentYear = snapshots?.[index]?.year;
+  // Era-aware summary comes from the pre-generated static module — no
+  // network call, works offline.
+  const eraSummary =
+    selected != null && currentYear != null ? summaryFor(selected, currentYear) : null;
+  const panelText =
+    eraSummary ?? "Ainda não há um resumo para este território neste período.";
 
   if (!snapshots) {
     return (
@@ -82,9 +62,16 @@ export default function TimelineExplorer() {
       {selected && (
         <div className="absolute right-4 top-4 w-72 rounded-xl bg-white/95 p-4 shadow-lg backdrop-blur dark:bg-zinc-900/95">
           <div className="flex items-start justify-between gap-2">
-            <h2 className="text-base font-semibold text-zinc-900 dark:text-zinc-100">
-              {translateTerritoryName(selected)}
-            </h2>
+            <div>
+              <h2 className="text-base font-semibold text-zinc-900 dark:text-zinc-100">
+                {translateTerritoryName(selected)}
+              </h2>
+              {snapshots[index] && (
+                <p className="text-xs text-zinc-400 dark:text-zinc-500">
+                  {snapshots[index].label}
+                </p>
+              )}
+            </div>
             <button
               type="button"
               onClick={() => setSelected(null)}
@@ -94,9 +81,8 @@ export default function TimelineExplorer() {
               ✕
             </button>
           </div>
-          <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-300">
-            {activeDetails?.description ??
-              "Ainda não há um resumo curado para este território. Adicione um em prisma/seed.ts."}
+          <p className="mt-2 max-h-64 overflow-y-auto text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
+            {panelText}
           </p>
         </div>
       )}
