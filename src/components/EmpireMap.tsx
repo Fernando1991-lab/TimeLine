@@ -9,6 +9,7 @@ import {
   computeLabelCandidates,
   labelLimitForZoom,
   selectVisibleLabels,
+  type TerritoryLabel,
   type ViewportBounds,
 } from "@/lib/territoryLabels";
 
@@ -65,18 +66,27 @@ async function loadSnapshot(file: string): Promise<SnapshotData> {
   return data;
 }
 
-function createLabelElement(name: string, color: string): HTMLDivElement {
+function createLabelElement(label: TerritoryLabel): HTMLDivElement {
   const el = document.createElement("div");
-  el.textContent = name;
+  el.textContent = label.name;
   el.style.pointerEvents = "none";
   el.style.whiteSpace = "nowrap";
-  el.style.fontSize = "12px";
-  el.style.fontWeight = "600";
-  el.style.color = "#1a1a1a";
   el.style.textShadow =
     "0 1px 2px rgba(255,255,255,0.9), 0 -1px 2px rgba(255,255,255,0.9), 1px 0 2px rgba(255,255,255,0.9), -1px 0 2px rgba(255,255,255,0.9)";
-  el.style.borderBottom = `2px solid ${color}`;
   el.style.padding = "0 1px";
+  if (label.unmapped) {
+    // "sem dados" reads as a quiet meta-note, not a place: smaller,
+    // italic, gray, no colored underline.
+    el.style.fontSize = "11px";
+    el.style.fontStyle = "italic";
+    el.style.fontWeight = "500";
+    el.style.color = "#6b6b6b";
+  } else {
+    el.style.fontSize = "12px";
+    el.style.fontWeight = "600";
+    el.style.color = "#1a1a1a";
+    el.style.borderBottom = `2px solid ${label.color}`;
+  }
   return el;
 }
 
@@ -133,7 +143,7 @@ export default function EmpireMap({ snapshot, onSelectTerritory }: Props) {
       });
       labelMarkersRef.current = selected.map((label) =>
         new maplibregl.Marker({
-          element: createLabelElement(label.name, label.color),
+          element: createLabelElement(label),
           anchor: "center",
         })
           .setLngLat([label.lng, label.lat])

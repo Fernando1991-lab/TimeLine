@@ -11,6 +11,10 @@ export type TerritoryLabel = {
   color: string;
   lng: number;
   lat: number;
+  // Land the source atlas left unassigned for this period (no
+  // NAME/SUBJECTO). Rendered as a muted "sem dados" note rather than a
+  // real place name.
+  unmapped: boolean;
 };
 
 type BBox = { minX: number; minY: number; maxX: number; maxY: number };
@@ -21,6 +25,15 @@ type LabelCandidate = TerritoryLabel & {
   bbox: BBox;
   geometry: Geometry;
 };
+
+// Only large unmapped regions get a "sem dados" note — small nameless
+// slivers aren't worth explaining and would just add clutter. ~1M km².
+const UNMAPPED_MIN_AREA_M2 = 1_000_000 * 1_000_000;
+// Continental-scale blank regions (bigger than most empires) are the
+// confusing ones, so they rank alongside real states instead of last —
+// otherwise they never win a label slot at world view. ~4M km².
+const UNMAPPED_MAJOR_AREA_M2 = 4_000_000 * 1_000_000;
+const UNMAPPED_LABEL = "sem dados";
 
 export type ViewportBounds = {
   west: number;
@@ -48,7 +61,6 @@ export function computeLabelCandidates(featureCollection: FeatureCollection): La
         | string
         | null
         | undefined;
-      if (!name) return null;
 
       let featureArea: number;
       try {
@@ -57,6 +69,12 @@ export function computeLabelCandidates(featureCollection: FeatureCollection): La
         return null;
       }
       if (!featureArea) return null;
+
+      // Large unassigned regions get a subtle "sem dados" note so the
+      // gray areas read as "the atlas didn't map this here" instead of
+      // looking like an unexplained blank.
+      const unmapped = !name;
+      if (unmapped && featureArea < UNMAPPED_MIN_AREA_M2) return null;
 
       let lng: number, lat: number;
       let box: BBox;
@@ -71,14 +89,27 @@ export function computeLabelCandidates(featureCollection: FeatureCollection): La
       if (!feature.geometry) return null;
 
       const color = (feature.properties?.__color as string) ?? "#c9c9c9";
-      const isCurated = name in CURATED_TERRITORIES;
-      const isGenericSociety = !isCurated && GENERIC_SOCIETY_PATTERN.test(name);
-      const tier = isCurated ? 0 : isGenericSociety ? 2 : 1;
+      const isCurated = !unmapped && name! in CURATED_TERRITORIES;
+      const isGenericSociety = !unmapped && !isCurated && GENERIC_SOCIETY_PATTERN.test(name!);
+      // Tier orders label priority (sorted by area within a tier):
+      //   0 curated states
+      //   1 other named states + continental-scale blank regions
+      //   2 generic societies + medium blank regions
+      // A blank region only reaches tier 1 when it's so large (bigger
+      // than most empires) that leaving it unlabeled at world view is
+      // what looked broken in the first place.
+      let tier: number;
+      if (unmapped) {
+        tier = featureArea >= UNMAPPED_MAJOR_AREA_M2 ? 1 : 2;
+      } else {
+        tier = isCurated ? 0 : isGenericSociety ? 2 : 1;
+      }
       return {
-        name: translateTerritoryName(name),
+        name: unmapped ? UNMAPPED_LABEL : translateTerritoryName(name!),
         color,
         lng,
         lat,
+        unmapped,
         area: featureArea,
         tier,
         bbox: box,
@@ -119,6 +150,12 @@ function boundsToPolygon(bounds: ViewportBounds): Feature<Polygon> | null {
   // Antimeridian-crossing viewports aren't handled here — bboxIntersectsBounds
   // (already lenient in that case) is the only filter that applies then.
   if (bounds.west > bounds.east) return null;
+  // Near-global views span >360° once padded; a polygon that wide is
+  // geometrically degenerate and makes booleanIntersects return false
+  // for large features. At that zoom everything's visible anyway, so
+  // skip the polygon refinement and let the bbox test (which correctly
+  // includes everything) stand.
+  if (bounds.east - bounds.west >= 350) return null;
   const { west, east, south, north } = bounds;
   return turfPolygon([
     [
@@ -198,6 +235,6 @@ export function selectVisibleLabels(
 
   return visible.slice(0, limit).map((candidate) => {
     const { lng, lat } = positionBounds ? labelPositionInView(candidate, positionBounds) : candidate;
-    return { name: candidate.name, color: candidate.color, lng, lat };
+    return { name: candidate.name, color: candidate.color, lng, lat, unmapped: candidate.unmapped };
   });
 }

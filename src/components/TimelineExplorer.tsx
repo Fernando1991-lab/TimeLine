@@ -73,6 +73,12 @@ export default function TimelineExplorer() {
     <div className="relative h-full w-full">
       <EmpireMap snapshot={snapshots[index]} onSelectTerritory={setSelected} />
 
+      <div className="pointer-events-none absolute left-3 top-3 max-w-[15rem] rounded-lg bg-white/85 px-3 py-2 text-xs leading-snug text-zinc-600 shadow-sm backdrop-blur dark:bg-zinc-900/85 dark:text-zinc-300">
+        <span className="mr-1 inline-block h-2.5 w-2.5 translate-y-px rounded-sm bg-[#8a8a7d]/45 align-middle" />
+        Áreas acinzentadas (<em>sem dados</em>): a fonte histórica não registra
+        um povo ou estado definido ali naquele período.
+      </div>
+
       {selected && (
         <div className="absolute right-4 top-4 w-72 rounded-xl bg-white/95 p-4 shadow-lg backdrop-blur dark:bg-zinc-900/95">
           <div className="flex items-start justify-between gap-2">
