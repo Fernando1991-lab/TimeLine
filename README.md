@@ -59,8 +59,11 @@ MapLibre GL e Prisma/Neon.
   `src/lib/territorySummaries.ts` (nenhuma chamada de API/rede em tempo de
   execução — funciona 100% offline). Cada território tem uma ou mais faixas
   de anos com texto próprio; a busca escolhe a faixa que contém o ano atual
-  (ou a mais próxima). É uma lista curada dos ~150 estados/civilizações mais
-  importantes — territórios fora dela mostram um aviso de fallback. Para
+  (ou a mais próxima). É uma lista curada de ~400 territórios — estados,
+  impérios, canatos, colônias e também categorias amplas de povos
+  pré-históricos/indígenas (ex.: "caçadores-coletores da Amazônia", que é o
+  que aparece ao clicar em boa parte da América do Sul antes da colonização).
+  Territórios fora dessa lista mostram um aviso de fallback. Para
   adicionar/editar, mexa em `TERRITORY_SUMMARIES`.
 - **Reivindicações coloniais (camada curada nossa)**: o dataset representa
   as Américas/África/Ásia sobretudo por *povos* (indígenas) e não desenha
