@@ -89,6 +89,20 @@ MapLibre GL e Prisma/Neon.
   (costa efetivamente ocupada vs. reivindicação por tratado vs. esfera de
   influência). A legenda deixa isso explícito. É assim que o Brasil
   português aparece na costa em 1500/1600, junto com o interior indígena.
+- **Marcadores de "lacuna conhecida"**: em alguns anos, o dataset deixa
+  regiões inteiras em branco ("sem dados") onde, na verdade, sabemos bem
+  quem vivia ali — por exemplo, a Inglaterra em 700 d.C. só tem "Cantia"
+  (Kent) e "Dumnonia" nomeadas, enquanto o resto da Heptarquia
+  anglo-saxônica (Wessex, Mércia, Nortúmbria etc.) fica em branco.
+  `src/lib/knownGapPeoples.ts` adiciona pequenos marcadores pontuais
+  (sem polígono, só um ponto clicável com "?" e sublinhado pontilhado
+  roxo) para esses casos. A ideia original era buscar isso ao vivo na
+  Wikidata via SPARQL, mas esse host é bloqueado pela política de rede
+  deste ambiente de desenvolvimento — então, como os outros arquivos
+  curados deste projeto, o conteúdo é pesquisado e escrito manualmente
+  por nós, não gerado automaticamente. Cobertura inicial: Inglaterra e
+  parte da Rússia/estepes em 700 d.C. — para adicionar mais casos, edite
+  `KNOWN_GAP_MARKERS` (chave = ano do snapshot).
 - **Postgres/Neon (opcional, legado)**: o projeto ainda inclui um schema
   Prisma, um seed e a rota `/api/empires` de uma abordagem anterior baseada
   em banco. Não é mais usada pelo painel (os resumos agora são estáticos),

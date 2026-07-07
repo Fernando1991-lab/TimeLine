@@ -14,6 +14,7 @@ import {
   type ViewportBounds,
 } from "@/lib/territoryLabels";
 import { colonialFeatureCollection } from "@/lib/colonialClaims";
+import { knownGapMarkersFor } from "@/lib/knownGapPeoples";
 
 const SOURCE_ID = "territories";
 const FILL_LAYER_ID = "territories-fill";
@@ -125,6 +126,27 @@ function createColonialLabelElement(name: string, color: string): HTMLDivElement
   return el;
 }
 
+// A "known gap" marker reads as a supplementary note, not part of the
+// source atlas at all: a small dotted violet underline plus a "?"
+// prefix, distinct from both real territories (solid underline) and
+// colonial claims (dashed underline in a power color). Clickable, so
+// pointer-events stay on (unlike the other label types above).
+function createGapMarkerElement(name: string): HTMLDivElement {
+  const el = document.createElement("div");
+  el.textContent = `? ${name}`;
+  el.style.cursor = "pointer";
+  el.style.whiteSpace = "nowrap";
+  el.style.fontSize = "11px";
+  el.style.fontWeight = "600";
+  el.style.fontStyle = "italic";
+  el.style.color = "#5b21b6";
+  el.style.textShadow =
+    "0 1px 2px rgba(255,255,255,0.95), 0 -1px 2px rgba(255,255,255,0.95), 1px 0 2px rgba(255,255,255,0.95), -1px 0 2px rgba(255,255,255,0.95)";
+  el.style.borderBottom = "2px dotted #5b21b6";
+  el.style.padding = "0 1px";
+  return el;
+}
+
 // Diagonal-line tile used as the colonial fill pattern, so the base
 // territory colors show through between the hatch lines — the visual
 // convention for "claimed/overlaid region" rather than solid control.
@@ -203,6 +225,7 @@ export default function EmpireMap({ snapshot, onSelectTerritory, flyTo }: Props)
   const mapRef = useRef<MapLibreMap | null>(null);
   const labelMarkersRef = useRef<maplibregl.Marker[]>([]);
   const colonialMarkersRef = useRef<maplibregl.Marker[]>([]);
+  const gapMarkersRef = useRef<maplibregl.Marker[]>([]);
   const labelCandidatesRef = useRef<LabelCandidates>([]);
   const refreshLabelsRef = useRef<() => void>(() => {});
   const [ready, setReady] = useState(false);
@@ -330,6 +353,8 @@ export default function EmpireMap({ snapshot, onSelectTerritory, flyTo }: Props)
       labelMarkersRef.current = [];
       colonialMarkersRef.current.forEach((marker) => marker.remove());
       colonialMarkersRef.current = [];
+      gapMarkersRef.current.forEach((marker) => marker.remove());
+      gapMarkersRef.current = [];
       map.remove();
       mapRef.current = null;
       setReady(false);
@@ -372,10 +397,30 @@ export default function EmpireMap({ snapshot, onSelectTerritory, flyTo }: Props)
       })
       .filter((m): m is maplibregl.Marker => m !== null);
 
+    // Curated "known gap" markers: well-documented peoples/states that
+    // the source atlas leaves blank for this year (see knownGapPeoples.ts
+    // for why these are manually researched rather than pulled live).
+    gapMarkersRef.current.forEach((marker) => marker.remove());
+    gapMarkersRef.current = knownGapMarkersFor(snapshot.year).map((gap) => {
+      const element = createGapMarkerElement(gap.name);
+      // Stop propagation -- otherwise this click bubbles up to
+      // MapLibre's own layer-click handling underneath, which does its
+      // own hit-test against the rendered canvas at these coordinates
+      // and overwrites this selection with whatever territory polygon
+      // happens to be at that pixel (e.g. clicking the "Khazar
+      // Khaganate" gap marker would otherwise re-select "Cazares" from
+      // the base fill layer a moment later).
+      element.addEventListener("click", (event) => {
+        event.stopPropagation();
+        onSelectTerritory(gap.name);
+      });
+      return new maplibregl.Marker({ element, anchor: "center" }).setLngLat([gap.lng, gap.lat]).addTo(map);
+    });
+
     return () => {
       cancelled = true;
     };
-  }, [ready, snapshot]);
+  }, [ready, snapshot, onSelectTerritory]);
 
   useEffect(() => {
     if (!ready || !flyTo) return;

@@ -9,6 +9,7 @@ import TerritorySearch from "@/components/TerritorySearch";
 import { translateTerritoryName } from "@/lib/curatedTerritories";
 import { summaryFor } from "@/lib/territorySummaries";
 import { colonialSummary } from "@/lib/colonialClaims";
+import { knownGapNote } from "@/lib/knownGapPeoples";
 import type { TerritoryIndexEntry, TerritorySearchResult } from "@/lib/territorySearch";
 import type { FlyToRequest } from "@/components/EmpireMap";
 
@@ -52,12 +53,14 @@ export default function TimelineExplorer() {
   }
 
   const currentYear = snapshots?.[index]?.year;
-  // Colonial-overlay claims have their own curated summary; otherwise
-  // fall back to the era-aware territory summary. Both are static
-  // (no network call, works offline).
+  // Colonial-overlay claims and "known gap" markers each have their own
+  // curated summary; otherwise fall back to the era-aware territory
+  // summary. All three are static (no network call, works offline).
+  const gapText = selected != null ? knownGapNote(selected) : null;
   const panelText =
     (selected != null ? colonialSummary(selected) : null) ??
     (selected != null && currentYear != null ? summaryFor(selected, currentYear) : null) ??
+    gapText ??
     "Ainda não há um resumo para este território neste período.";
 
   if (!snapshots) {
@@ -89,6 +92,11 @@ export default function TimelineExplorer() {
           Contornos tracejados: reivindicações coloniais europeias
           (curadas por nós, aproximadas e esquemáticas).
         </p>
+        <p>
+          <span className="mr-1 inline-block h-2 w-3.5 translate-y-px border-b-2 border-dotted border-violet-600 align-middle" />
+          Marcadores roxos com <em>?</em>: povos/estados que sabemos existir
+          numa área &quot;sem dados&quot;, mas sem fronteiras no nosso dataset principal.
+        </p>
       </div>
 
       {selected && (
@@ -101,6 +109,12 @@ export default function TimelineExplorer() {
               {snapshots[index] && (
                 <p className="text-xs text-zinc-400 dark:text-zinc-500">
                   {snapshots[index].label}
+                </p>
+              )}
+              {panelText === gapText && gapText != null && (
+                <p className="mt-1 text-[11px] italic text-violet-600 dark:text-violet-400">
+                  Não faz parte do nosso dataset principal — nota curada por nós a
+                  partir de conhecimento histórico geral.
                 </p>
               )}
             </div>
