@@ -38,11 +38,10 @@ MapLibre GL e Prisma/Neon.
   `src/lib/curatedTerritories.ts`) sobre regiões genéricas de
   "caçadores-coletores"/"nômades" do dataset, que são enormes em área mas
   pouco relevantes historicamente. Nomes em português também vêm desse
-  arquivo curado — é uma lista manual (hoje cobre uns 170 territórios),
-  não cobre 100% dos ~1700 nomes únicos do dataset (o que não está lá
-  aparece em inglês, principalmente ao dar zoom bem próximo em regiões
-  menos curadas). Para adicionar/traduzir mais territórios, edite
-  `CURATED_TERRITORIES`. O rótulo é posicionado no centro de massa do
+  arquivo curado, que hoje traduz os ~1720 nomes únicos do dataset (das
+  34 snapshots vendorizadas) — cobertura de 100%. Se você adicionar anos
+  novos ao dataset, nomes que não existiam antes vão aparecer em inglês
+  até serem adicionados a `CURATED_TERRITORIES`. O rótulo é posicionado no centro de massa do
   território, "grudado" na área visível quando esse centro cai fora da
   tela — do contrário um território enorme (ex.: um domínio nômade que
   cobre metade do continente) perderia o rótulo sempre que você olhasse
