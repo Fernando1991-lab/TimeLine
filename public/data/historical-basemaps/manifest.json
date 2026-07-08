@@ -1,5 +1,25 @@
 [
   {
+    "year": -123000,
+    "label": "123000 a.C.",
+    "file": "world_bc123000.geojson"
+  },
+  {
+    "year": -10000,
+    "label": "10000 a.C.",
+    "file": "world_bc10000.geojson"
+  },
+  {
+    "year": -8000,
+    "label": "8000 a.C.",
+    "file": "world_bc8000.geojson"
+  },
+  {
+    "year": -5000,
+    "label": "5000 a.C.",
+    "file": "world_bc5000.geojson"
+  },
+  {
     "year": -4000,
     "label": "4000 a.C.",
     "file": "world_bc4000.geojson"
@@ -25,14 +45,29 @@
     "file": "world_bc1000.geojson"
   },
   {
+    "year": -700,
+    "label": "700 a.C.",
+    "file": "world_bc700.geojson"
+  },
+  {
     "year": -500,
     "label": "500 a.C.",
     "file": "world_bc500.geojson"
   },
   {
+    "year": -400,
+    "label": "400 a.C.",
+    "file": "world_bc400.geojson"
+  },
+  {
     "year": -323,
     "label": "323 a.C.",
     "file": "world_bc323.geojson"
+  },
+  {
+    "year": -300,
+    "label": "300 a.C.",
+    "file": "world_bc300.geojson"
   },
   {
     "year": -200,
@@ -55,9 +90,19 @@
     "file": "world_100.geojson"
   },
   {
+    "year": 200,
+    "label": "200 d.C.",
+    "file": "world_200.geojson"
+  },
+  {
     "year": 300,
     "label": "300 d.C.",
     "file": "world_300.geojson"
+  },
+  {
+    "year": 400,
+    "label": "400 d.C.",
+    "file": "world_400.geojson"
   },
   {
     "year": 500,
@@ -65,9 +110,19 @@
     "file": "world_500.geojson"
   },
   {
+    "year": 600,
+    "label": "600 d.C.",
+    "file": "world_600.geojson"
+  },
+  {
     "year": 700,
     "label": "700 d.C.",
     "file": "world_700.geojson"
+  },
+  {
+    "year": 800,
+    "label": "800 d.C.",
+    "file": "world_800.geojson"
   },
   {
     "year": 900,
@@ -105,9 +160,19 @@
     "file": "world_1400.geojson"
   },
   {
+    "year": 1492,
+    "label": "1492 d.C.",
+    "file": "world_1492.geojson"
+  },
+  {
     "year": 1500,
     "label": "1500 d.C.",
     "file": "world_1500.geojson"
+  },
+  {
+    "year": 1530,
+    "label": "1530 d.C.",
+    "file": "world_1530.geojson"
   },
   {
     "year": 1600,
@@ -115,14 +180,39 @@
     "file": "world_1600.geojson"
   },
   {
+    "year": 1650,
+    "label": "1650 d.C.",
+    "file": "world_1650.geojson"
+  },
+  {
     "year": 1700,
     "label": "1700 d.C.",
     "file": "world_1700.geojson"
   },
   {
+    "year": 1715,
+    "label": "1715 d.C.",
+    "file": "world_1715.geojson"
+  },
+  {
+    "year": 1783,
+    "label": "1783 d.C.",
+    "file": "world_1783.geojson"
+  },
+  {
     "year": 1800,
     "label": "1800 d.C.",
     "file": "world_1800.geojson"
+  },
+  {
+    "year": 1815,
+    "label": "1815 d.C.",
+    "file": "world_1815.geojson"
+  },
+  {
+    "year": 1880,
+    "label": "1880 d.C.",
+    "file": "world_1880.geojson"
   },
   {
     "year": 1900,
@@ -138,6 +228,11 @@
     "year": 1920,
     "label": "1920 d.C.",
     "file": "world_1920.geojson"
+  },
+  {
+    "year": 1930,
+    "label": "1930 d.C.",
+    "file": "world_1930.geojson"
   },
   {
     "year": 1938,

@@ -11,14 +11,22 @@ MapLibre GL e Prisma/Neon.
   uma cor de fundo (oceano), e os próprios territórios GeoJSON formam os
   continentes. Isso evita depender da disponibilidade/limites de um provedor
   de tiles de terceiros.
-- **Dados históricos**: `public/data/historical-basemaps/` contém uma
-  amostra curada de anos (veja `manifest.json`) extraída do projeto
-  open-source [historical-basemaps](https://github.com/aourednik/historical-basemaps)
-  (licença GPLv3, baseado em atlas históricos tipo Euratlas). São fronteiras
+- **Dados históricos**: `public/data/historical-basemaps/` contém todos os
+  53 anos disponíveis (veja `manifest.json`) no projeto open-source
+  [historical-basemaps](https://github.com/aourednik/historical-basemaps)
+  (licença GPLv3, baseado em atlas históricos tipo Euratlas), de 123.000 a.C.
+  (distribuição de espécies humanas antigas) até 2010. São fronteiras
   **aproximadas** — o dataset não pretende ser preciso ano a ano, e alguns
   nomes têm problemas de encoding na fonte original (ex.: acentos quebrados).
-  Para adicionar mais anos, baixe o `world_<ano>.geojson` correspondente do
-  repositório acima para essa pasta e rode `npm run data:manifest`.
+  Se o projeto de origem publicar anos novos, baixe o `world_<ano>.geojson`
+  correspondente para essa pasta e rode `npm run data:manifest` seguido de
+  `npm run data:territory-index`. Os anos mais recentes adicionados (pré-
+  história profunda e uma faixa de nomes muito detalhada de povos indígenas
+  das Américas, sobretudo em 1492-1930) trouxeram ~1400 nomes de território
+  que ainda não têm tradução em `curatedTerritories.ts` nem resumo em
+  `territorySummaries.ts` — aparecem em inglês/sem resumo até serem
+  adicionados, o que não quebra nada (mesmo comportamento de sempre para
+  nomes não curados).
 - **Slider**: `src/components/TimelineSlider.tsx` navega pelos snapshots
   disponíveis (não é uma escala contínua de anos — pula de snapshot em
   snapshot) e tem play/pause automático.
