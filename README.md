@@ -59,7 +59,7 @@ MapLibre GL e Prisma/Neon.
   `src/lib/territorySummaries.ts` (nenhuma chamada de API/rede em tempo de
   execução — funciona 100% offline). Cada território tem uma ou mais faixas
   de anos com texto próprio; a busca escolhe a faixa que contém o ano atual
-  (ou a mais próxima). É uma lista curada de ~560 territórios — estados,
+  (ou a mais próxima). É uma lista curada de ~750 territórios — estados,
   impérios, canatos, colônias e também categorias amplas de povos
   pré-históricos/indígenas (ex.: "caçadores-coletores da Amazônia", que é o
   que aparece ao clicar em boa parte da América do Sul antes da colonização).
