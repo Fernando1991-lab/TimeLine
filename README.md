@@ -108,8 +108,8 @@ MapLibre GL e Prisma/Neon.
   Wikidata via SPARQL, mas esse host é bloqueado pela política de rede
   deste ambiente de desenvolvimento — então, como os outros arquivos
   curados deste projeto, o conteúdo é pesquisado e escrito manualmente
-  por nós, não gerado automaticamente. Cobertura atual: 55 povos/estados
-  distintos (100 entradas contando repetições em anos diferentes),
+  por nós, não gerado automaticamente. Cobertura atual: 60 povos/estados
+  distintos (105 entradas contando repetições em anos diferentes),
   mapeados sistematicamente a partir das maiores áreas "sem dados" do
   dataset inteiro — Heptarquia anglo-saxônica e estepes russas (700),
   tribos celtas/ibéricas da Europa Ocidental (200 a.C.), culturas da
@@ -118,9 +118,11 @@ MapLibre GL e Prisma/Neon.
   sudoeste dos EUA e Mesoamérica (1000–1500), Reino Daju de Darfur
   (1279), Ternate/Tidore nas Molucas (1279–1400), Srivijaya/Langkasuka
   no Sudeste Asiático (100–700), confederações indígenas do leste da
-  América do Norte no contato colonial (1500/1700), entre outros. Para
-  adicionar mais casos, edite `KNOWN_GAP_MARKERS` (chave = ano do
-  snapshot).
+  América do Norte no contato colonial (1500/1700), o vasto vazio entre
+  a Europa Oriental e a China em 600 d.C. (eslavos antes do Danúbio,
+  Sogdiana, Corásmia, Tocaristão pós-heftalita e o reino tibetano de
+  Zhangzhung), entre outros. Para adicionar mais casos, edite
+  `KNOWN_GAP_MARKERS` (chave = ano do snapshot).
 - **Postgres/Neon (opcional, legado)**: o projeto ainda inclui um schema
   Prisma, um seed e a rota `/api/empires` de uma abordagem anterior baseada
   em banco. Não é mais usada pelo painel (os resumos agora são estáticos),
