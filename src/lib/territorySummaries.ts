@@ -3245,6 +3245,178 @@ export const TERRITORY_SUMMARIES: Record<string, EraSummary[]> = {
   "Zuni": [
     { from: 1530, to: 1600, text: "Os zunis eram um povo puebloan do oeste do atual Novo México, cuja língua é considerada um isolado linguístico, sem parentesco comprovado com outros idiomas indígenas da região. Viviam em pueblos de múltiplos andares construídos em adobe, sustentados por agricultura irrigada de milho, feijão e abóbora. Em 1540, um de seus povoados, Hawikuh, seria palco do primeiro contato violento entre os espanhóis e os povos pueblo, quando a expedição de Francisco Vásquez de Coronado o atacou em busca das lendárias Sete Cidades de Cíbola." },
   ],
+  "Akatziri": [
+    { from: 350, to: 465, text: "Os acátziros eram um povo nômade das estepes pônticas, ao norte do Mar Negro, mencionado pelo historiador bizantino Prisco de Pânio, que relatou uma embaixada enviada pelo imperador Teodósio II à corte de Átila. Descritos como pastores e caçadores organizados sob chefes distintos, tornaram-se subordinados ao poder huno depois que Átila interveio nas disputas entre suas lideranças, impondo um dos chefes e depois colocando seu próprio filho Elac como governante do grupo. Sua origem exata é debatida, sendo identificados por alguns estudiosos como um grupo de afiliação huna ou turcomana; após o colapso do Império Huno, desapareceram das fontes, tendo sido provavelmente absorvidos por outros povos das estepes." },
+  ],
+  "Alamans": [
+    { from: 213, to: 506, text: "Os alamanos formavam uma confederação de tribos germânicas estabelecida ao longo do Reno superior e do Danúbio, na região que hoje corresponde ao sudoeste da Alemanha, à Alsácia e à Suíça. Mencionados pela primeira vez em 213 d.C., tornaram-se um dos adversários mais persistentes de Roma a partir do século III, realizando incursões recorrentes através da fronteira romana. Seu nome, que significa aproximadamente 'todos os homens', deu origem às palavras usadas em francês, espanhol e português para designar a Alemanha (Allemagne, Alemania, Alemanha). Derrotados pelos francos de Clóvis por volta de 496-506, os alamanos perderam sua independência e foram progressivamente incorporados ao reino franco." },
+  ],
+  "Algeria (FR)": [
+    { from: 1880, to: 1880, text: "Conquistada pela França a partir de 1830, a Argélia era, em 1880, administrada como parte integrante do território metropolitano francês, um estatuto excepcional entre as possessões coloniais francesas. Abrigava numerosa comunidade de colonos europeus, os chamados pieds-noirs, enquanto a maioria árabe e berbere enfrentava discriminação legal e política sistemática sob o regime do Código do Indigenato." },
+  ],
+  "Amuq D": [
+    { from: -5000, to: -4300, text: "'Amuq D' designa uma fase da sequência arqueológica do vale do Amuq (Amik Ovası), no sudeste da atual Turquia, próximo à fronteira com a Síria, situada aproximadamente no 5º milênio a.C., num período de transição entre o neolítico final e o calcolítico. Corresponde a uma etapa de crescente complexidade social na região, com maior especialização artesanal e sinais de urbanização incipiente, integrada ao mundo cultural do norte do Levante e do Crescente Fértil." },
+  ],
+  "Astrakhan Khanate": [
+    { from: 1530, to: 1530, text: "O Canato de Astracã foi um dos Estados sucessores surgidos da fragmentação da Horda Dourada, centrado na cidade de Astracã, na foz do rio Volga. Sua posição garantia o controle do acesso ao mar Cáspio e a rotas comerciais lucrativas entre a Rússia, a Pérsia e a Ásia Central. Poucas décadas após este período, em 1556, seria conquistado pela Rússia moscovita sob Ivã, o Terrível, consolidando o controle russo sobre todo o curso do Volga." },
+  ],
+  "Bithynia": [
+    { from: -300, to: -300, text: "A Bitínia era um reino helenístico independente situado no noroeste da Anatólia, ao longo das costas do mar Negro e do mar de Mármara. Governada por uma dinastia local de origem trácia, antecessora de Nicomedes I, destacou-se por resistir com sucesso às tentativas de anexação pelos grandes reinos diádocos e pela Macedônia, preservando sua autonomia em meio às disputas pelo legado de Alexandre, o Grande." },
+  ],
+  "Brandenburg": [
+    { from: 1715, to: 1715, text: "O Marcgraviado e Eleitorado de Brandemburgo, território central da dinastia Hohenzollern, encontrava-se por essa época unido em união pessoal ao Ducado, então já Reino, da Prússia, cujo governante assumira o título de \"Rei em Prússia\" em 1701. Brandemburgo-Prússia vivia então rápida ascensão como potência militar europeia sob os Hohenzollern." },
+  ],
+  "Caucasian Alans": [
+    { from: 370, to: 500, text: "Os alanos do Cáucaso eram o ramo desse povo nômade de língua iraniana que permaneceu nas estepes e nas montanhas do Cáucaso Setentrional após a invasão huna de cerca de 370 d.C., que dividiu os alanos entre os que se submeteram ou se aliaram aos hunos e os que migraram para o oeste — estes últimos alcançariam a Gália, a península Ibérica e até o norte da África ao lado dos vândalos. Diferentemente desses grupos migrantes, os alanos caucasianos mantiveram um modo de vida pastoril nômade entre as estepes pônticas e as terras altas do Cáucaso, preservando ali sua língua e identidade por séculos, base sobre a qual mais tarde se formaria o reino medieval de Alânia e, por fim, o povo osseta atual." },
+  ],
+  "Celltic Hallsatt culture": [
+    { from: -800, to: -450, text: "A cultura de Hallstatt foi a fase mais antiga da Idade do Ferro celta na Europa Central, centrada na região de mineração de sal de Hallstatt, na atual Áustria. É conhecida por suas sepulturas de elite com carros cerimoniais e por ferramentas e armas entre as primeiras a empregar o ferro em larga escala. Antecedeu e deu origem à posterior cultura de La Tène, que passaria a dominar o mundo celta a partir do século V a.C." },
+  ],
+  "Chernoles culture": [
+    { from: -900, to: -650, text: "A cultura de Chernoles (ou Chornolis) foi uma cultura agrícola do início da Idade do Ferro que se desenvolveu na zona de floresta-estepe da atual Ucrânia. É frequentemente associada por pesquisadores a populações eslavas ou proto-eslavas primitivas, embora outros a considerem uma comunidade agrícola sob influência cita, distinta dos nômades guerreiros das estepes abertas. Seus assentamentos fortificados e vestígios de agricultura contrastam com o modo de vida pastoril de povos vizinhos." },
+  ],
+  "Coastal and Woodland Mesolithic Hunter-Foragers": [
+    { from: -10000, to: -6000, text: "Após o fim da última glaciação, populações mesolíticas de caçadores-coletores ocuparam regiões costeiras e florestadas da Anatólia e do litoral egeu, adaptando-se ao clima mais quente e às paisagens em transformação. Exploravam recursos marinhos e fluviais, como peixes e moluscos, além da caça de animais de floresta, complementando a dieta com plantas silvestres. Utilizavam ferramentas de pedra lascada de pequenas dimensões, os microlitos. Antecederam, na mesma região, a chegada das primeiras comunidades agrícolas neolíticas vindas do Oriente Próximo." },
+  ],
+  "Crete": [
+    { from: -300, to: -300, text: "Nesse período, a ilha de Creta encontrava-se politicamente fragmentada em numerosas cidades-estado gregas independentes, muito diferente da unidade alcançada pela civilização minoica mais de um milênio antes. As cidades cretenses eram conhecidas por suas frequentes guerras internas e pela prática da pirataria, e seus mercenários, sobretudo arqueiros e fundibulários, eram muito valorizados e contratados por exércitos em todo o Mediterrâneo." },
+  ],
+  "Danzig": [
+    { from: 1930, to: 1930, text: "A Cidade Livre de Danzig foi um Estado-cidade semiautônomo criado pelo Tratado de Versalhes de 1919, sob proteção da Liga das Nações, com população majoritariamente alemã, mas unida aduaneiramente à Polônia, o que garantia a esta acesso ao mar Báltico. Sua condição ambígua gerou intensas tensões entre alemães e poloneses ao longo do período entreguerras, tornando-se um dos estopins imediatos da invasão alemã da Polônia em 1939." },
+  ],
+  "Dimini": [
+    { from: -4800, to: -4500, text: "A cultura Dimini foi uma cultura do neolítico final da Tessália, na Grécia central, datada aproximadamente entre 4800 e 4500 a.C. É conhecida sobretudo pelo seu sítio-tipo, o povoado de Dimini, com um sistema de muralhas concêntricas e um megaron central que sugerem uma organização social mais hierarquizada do que a das fases neolíticas gregas anteriores. Também se destacou pela produção de cerâmica pintada refinada e por trabalhos em metal (cobre e prata) e obsidiana." },
+  ],
+  "Early combware": [
+    { from: -5300, to: -4000, text: "A cerâmica de pente antiga corresponde a uma fase inicial da chamada cultura da Cerâmica de Pente (Comb Ware), um horizonte neolítico que se estendia pela zona florestal do nordeste da Europa, da Finlândia e do Báltico ao norte da Rússia europeia, por volta do 5º milênio a.C. Seu nome vem da decoração típica da cerâmica, feita por impressões semelhantes às de um pente de poucos dentes. Tratava-se de populações de caçadores-coletores-pescadores que adotaram a produção de cerâmica sem praticar agricultura, mantendo uma economia baseada na caça, na pesca e na coleta de recursos florestais." },
+  ],
+  "Electoral Hesse": [
+    { from: 1815, to: 1815, text: "O Eleitorado de Hesse, também chamado Hesse-Cassel, foi restaurado após a queda de Napoleão e ingressou na Confederação Germânica em 1815 como um pequeno e conservador Estado alemão sob a dinastia dos landgraves-eleitores de Hesse-Cassel. Manteve, de forma anacrônica, o título de \"Eleitorado\", herdado de sua elevação em 1803, ainda que o Sacro Império Romano-Germânico e seu colégio de eleitores tivessem deixado de existir desde 1806." },
+  ],
+  "Ests": [
+    { from: 800, to: 800, text: "Os estônios eram um povo de língua fínica do litoral oriental do Báltico, no território da atual Estônia, organizados em paróquias e distritos regionais independentes, sem unidade política centralizada. Eram conhecidos das fontes escandinavas da era viking, com quem mantinham contatos de comércio e conflito. Sua independência perduraria até o século XIII, quando a região seria conquistada e cristianizada à força pelas Cruzadas do Báltico." },
+  ],
+  "Finns": [
+    { from: 800, to: 800, text: "Por volta de 800, o território da atual Finlândia era habitado por um mosaico de povos de língua fínica — os finlandeses propriamente ditos, os tavastianos e os carélios — organizados em pequenos grupos tribais, sem qualquer unificação política ou estatal. Viviam da caça, da pesca e de alguma agricultura, mantendo contatos com escandinavos a oeste e povos eslavos e fínicos a leste. A integração ao reino da Suécia e a cristianização só viriam séculos depois, a partir das cruzadas suecas ao Báltico." },
+  ],
+  "Funnel-Beaker": [
+    { from: -5000, to: -2700, text: "Esta entrada, datada de cerca de 5000 a.C. no mapa, é anterior à fase clássica da chamada cultura do Vaso de Funil (Trichterbecherkultur, ou TRB), normalmente situada entre 4000 e 2700 a.C. no norte da Europa, podendo representar aqui uma fase mais antiga ou ancestral desse horizonte. Em seu apogeu, essa cultura ficou célebre por construções megalíticas — dólmens e câmaras de corredor —, por cerâmicas com gargalo afunilado característico e pela adoção da agricultura e da pecuária em regiões como a atual Dinamarca, o norte da Alemanha, os Países Baixos e o sul da Escandinávia, sendo uma das primeiras culturas plenamente agrícolas do norte europeu." },
+  ],
+  "Geats": [
+    { from: 400, to: 1000, text: "Os gautas (geats) eram um povo germânico do sul da Escandinávia, estabelecido na região da Gotalândia, no atual sul da Suécia. Sua documentação histórica direta é escassa para este período, sendo conhecidos principalmente por fontes literárias posteriores, sobretudo o poema épico anglo-saxão Beowulf, cujo herói homônimo é um príncipe e depois rei dos gautas, além de referências em sagas escandinavas medievais. Nesses relatos, os gautas aparecem como um reino guerreiro rival dos suíones (suecos) do lago Mälaren, com quem mantiveram rivalidades ao longo de gerações, até serem gradualmente absorvidos pelo reino unificado da Suécia." },
+  ],
+  "Gepids": [
+    { from: 270, to: 453, text: "Os gépidas eram um povo germânico oriental, aparentado aos godos, que se estabeleceu na bacia dos Cárpatos, em território hoje correspondente à Romênia e à Hungria, entre os rios Tisza e Sava. Mencionados pela primeira vez por fontes romanas no século III, foram incorporados ao Império Huno no século IV, ao qual permaneceram subordinados, fornecendo contingentes militares para as campanhas de Átila." },
+    { from: 453, to: 567, text: "Após a morte de Átila em 453, os gépidas, liderados pelo rei Ardarico, encabeçaram a revolta dos povos germânicos subjugados e derrotaram os filhos do rei huno na batalha do rio Nedao, conquistando a independência e fundando um reino próprio na bacia dos Cárpatos. Esse reino gépida perdurou até ser destruído em 567 por uma aliança entre lombardos e ávaros, episódio que também impulsionou a migração dos lombardos para a Itália." },
+  ],
+  "Germanic tribes": [
+    { from: -500, to: -100, text: "No período pré-romano da Idade do Ferro, tribos de língua germânica ocupavam a Jutlândia, o sul da Escandinávia e o norte da atual Alemanha. Organizadas em pequenas comunidades agrícolas e guerreiras, ainda não haviam entrado em contato direto e documentado com o mundo romano, que só as registraria detalhadamente séculos mais tarde. Desse substrato surgiriam, com o tempo, os povos germânicos que protagonizariam as grandes migrações e os conflitos com Roma." },
+  ],
+  "Grand Duchy of Hesse": [
+    { from: 1815, to: 1815, text: "O Grão-Ducado de Hesse, também conhecido como Hesse-Darmstadt, fora elevado a essa condição em 1806 sob patrocínio de Napoleão Bonaparte, mantendo o título após o Congresso de Viena e ingressando na Confederação Germânica em 1815. Rival histórico do vizinho Eleitorado de Hesse (Hesse-Cassel), com o qual compartilhava origem comum no antigo landgraviato hessiano medieval, sustentava com este uma longa rivalidade dinástica apesar do parentesco." },
+  ],
+  "Greek colonies": [
+    { from: -750, to: -300, text: "As colônias gregas do sul da Itália, conhecidas coletivamente como Magna Grécia, foram fundadas por cidades da Grécia continental e da Jônia a partir do século VIII a.C., incluindo centros como Tarento, Síbaris e Crotona. Tornaram-se prósperos polos de comércio, filosofia e cultura, exercendo forte influência sobre os povos itálicos vizinhos, entre eles os romanos. Perderam gradualmente a independência para Roma a partir do século III a.C., embora seu legado helênico tenha permanecido marcante na região." },
+  ],
+  "Highland Mesolithic Hunter-Foragers": [
+    { from: -10000, to: -6000, text: "Grupos mesolíticos ocuparam regiões montanhosas do planalto armênio e do leste da Anatólia, entre o Cáucaso e as cabeceiras da Mesopotâmia, adaptando-se a um ambiente de montanha com invernos rigorosos. Sua subsistência provavelmente envolvia deslocamentos sazonais entre vales de inverno e pastagens de altitude no verão, acompanhando a caça de animais selvagens de montanha. Compartilhavam a tradição de ferramentas microlíticas típica do Mesolítico da região, adaptada às particularidades do relevo acidentado." },
+  ],
+  "Hunnic Empire": [
+    { from: 370, to: 469, text: "O Império Huno foi uma confederação nômade das estepes centro-asiáticas que, a partir de cerca de 370 d.C., invadiu a Europa Oriental, subjugando os alanos e os ostrogodos e empurrando os visigodos para dentro das fronteiras romanas, um dos gatilhos decisivos das grandes migrações germânicas. Sob Rua e, sobretudo, seu sucessor Átila, que unificou o poder huno por volta de 434, o império dominou a Europa Central e Oriental, extraindo pesados tributos do Império Romano do Oriente e chegando a ameaçar a Gália e a Itália. Após a morte de Átila em 453, disputas sucessórias e a revolta dos povos germânicos subjugados, vitoriosos na batalha do rio Nedao, fragmentaram rapidamente o domínio huno, cujos remanescentes foram dispersos ou derrotados nas décadas seguintes, dissolvendo-se como força política por volta de 469." },
+  ],
+  "Kelteminar culture": [
+    { from: -5000, to: -3000, text: "A cultura de Kelteminar foi uma cultura neolítica da Ásia Central, situada entre cerca de 5000 e 3000 a.C. nas regiões desérticas em torno do mar de Aral e dos deltas dos rios Amu Darya e Syr Darya, nos atuais Uzbequistão, Turcomenistão e Cazaquistão. Sua subsistência baseava-se sobretudo na pesca, na caça e na coleta, com pouca ou nenhuma prática agrícola. É conhecida por produzir uma das cerâmicas mais antigas da região, com vasos de fundo pontiagudo decorados por incisões, e por habitações comunais de grandes dimensões que abrigavam dezenas de pessoas." },
+  ],
+  "Kingdom of Antigonus": [
+    { from: -306, to: -301, text: "O Reino de Antígono foi fundado por Antígono I Monoftalmo (\"o Caolho\"), um dos generais macedônios de Alexandre, o Grande, e o mais poderoso dos diádocos em disputa pelo império após sua morte. Proclamou-se rei em 306 a.C. e, com o apoio de seu filho Demétrio Poliórcetes, chegou a controlar grande parte da Anatólia, da Síria e da região do Egeu. Seu poder crescente levou à formação de uma coalizão dos demais diádocos, que o derrotaria e mataria na Batalha de Ipso, em 301 a.C., selando a partilha definitiva do império de Alexandre." },
+  ],
+  "Kingdom of Kassander": [
+    { from: -305, to: -297, text: "O Reino de Cassandro foi fundado por Cassandro, filho do regente Antípatro e um dos diádocos de Alexandre, o Grande, que consolidou seu domínio sobre a Macedônia e boa parte da Grécia. Ficou marcado por sua disputa implacável pelo legado de Alexandre: ordenou a execução da mãe do conquistador, Olímpia, e eliminou os herdeiros diretos de Alexandre, sua viúva Roxana e o filho Alexandre IV, garantindo assim sua própria posição de poder na região." },
+  ],
+  "Kingdom of Lysimachus": [
+    { from: -306, to: -281, text: "O Reino de Lisímaco foi fundado por Lisímaco, general macedônio de Alexandre, o Grande, e um dos diádocos que se dividiram o império após sua morte. Governou inicialmente a Trácia e, depois de participar da coalizão vitoriosa contra Antígono na Batalha de Ipso (301 a.C.), estendeu seu domínio também sobre boa parte da Anatólia. Seu reino desmoronaria após sua morte em 281 a.C., na Batalha de Curopédio, contra Seleuco I." },
+  ],
+  "La Almagra culture": [
+    { from: -5000, to: -4000, text: "A cultura de La Almagra corresponde a comunidades agrícolas do neolítico do sul da península Ibérica, sobretudo da região da Andaluzia, na Espanha, ativas por volta do 5º milênio a.C. Recebeu esse nome por uma cerâmica característica com engobo vermelho de óxido de ferro (o 'almagre'), encontrada em cavernas e sítios da região. Faz parte do processo mais amplo de difusão da agricultura pelo Mediterrâneo ocidental." },
+  ],
+  "La Tène culture": [
+    { from: -800, to: -450, text: "O nome 'La Tène' designa classicamente a fase mais tardia da Idade do Ferro celta, que os arqueólogos costumam situar a partir de cerca de 450 a.C., sucedendo a cultura de Hallstatt. A data de 700 a.C. associada a esta entrada é, portanto, anterior ao período em que a cultura de La Tène propriamente dita é normalmente reconhecida, correspondendo antes à fase final da cultura de Hallstatt nesta região da Gália. Séculos mais tarde, porém, essa mesma área viria a se tornar um dos centros característicos da arte e sociedade de La Tène, conhecida por sua ornamentação em espiral e por seus oppida fortificados." },
+  ],
+  "Lusatian culture": [
+    { from: -1300, to: -500, text: "A cultura Lusaciana floresceu no final da Idade do Bronze e início da Idade do Ferro em partes da atual Polônia, leste da Alemanha e República Tcheca. Está associada à ampla tradição funerária dos 'campos de urnas', caracterizada pela cremação dos mortos e pelo sepultamento das cinzas em cemitérios organizados. Alguns estudiosos a relacionam a populações eslavas ou proto-germânicas primitivas, embora essa associação permaneça debatida entre os especialistas." },
+  ],
+  "Mari": [
+    { from: 800, to: 800, text: "O povo mari, de língua fino-úgrica, habitava a região do médio Volga, correspondente à atual república de Mari El, na Rússia. Vivia da agricultura florestal, da caça e da apicultura, e mantinha tradicionalmente uma religião animista própria, cujas práticas pré-cristãs sobrevivem, em alguma medida, entre comunidades marís até os dias atuais." },
+  ],
+  "Milano (Austria)": [
+    { from: 1783, to: 1783, text: "O Ducado de Milão passou ao domínio dos Habsburgo austríacos após a Guerra de Sucessão Espanhola, em 1714, permanecendo possessão austríaca ao longo do século XVIII. Sob Maria Teresa e José II, foi administrado como um território relativamente próspero e reformista do norte da Itália, beneficiado por políticas de modernização típicas do despotismo esclarecido habsbúrgico." },
+  ],
+  "Mordvinians": [
+    { from: 800, to: 800, text: "Os mordvinos (povos erza e moksha) formavam um grupo fino-úgrico estabelecido na região do médio Volga, correspondente à atual Mordóvia, na Rússia. Viviam da agricultura florestal, da caça e da pesca, preservando língua e identidade próprias por muitos séculos, mesmo após a posterior expansão eslava e russa sobre a região, à qual resistiram por longo tempo antes de serem gradualmente incorporados ao Estado moscovita." },
+  ],
+  "Narva": [
+    { from: -5300, to: -1750, text: "A cultura de Narva foi uma cultura neolítica do leste do Báltico, presente entre cerca de 5300 e 1750 a.C. em áreas hoje correspondentes à Estônia, Letônia, Lituânia e regiões vizinhas da Polônia, Bielorrússia e Rússia. Recebeu o nome do rio Narva, na Estônia, e foi uma das primeiras culturas da região a utilizar cerâmica. Sua economia baseava-se na pesca, na caça e na coleta, sem a prática de agricultura, e suas comunidades permaneciam por longos períodos nos mesmos assentamentos à beira de rios e lagos." },
+  ],
+  "Nassau": [
+    { from: 1815, to: 1815, text: "O Ducado de Nassau foi formado em 1806 pela união de diversos pequenos territórios da família de Nassau, no contexto da mediatização napoleônica que extinguiu inúmeros pequenos Estados do antigo Sacro Império. Ingressou na Confederação Germânica em 1815, mantendo-se como ducado soberano. Sua dinastia, a Casa de Nassau, é a ancestral das atuais casas reais dos Países Baixos e de Luxemburgo." },
+  ],
+  "Neanderthal": [
+    { from: -400000, to: -40000, text: "Os neandertais foram uma espécie ou subespécie humana extinta que habitou a Europa e partes da Ásia ocidental por centenas de milhares de anos, de cerca de 400.000 até por volta de 40.000 anos atrás. Fabricavam ferramentas de pedra da tradição musteriense, dominavam o uso controlado do fogo e praticavam rituais funerários, enterrando seus mortos. Coexistiram com os primeiros Homo sapiens que chegaram à Europa e à Ásia ocidental, com os quais houve cruzamentos genéticos comprovados por DNA antigo. Seu desaparecimento, por volta de 40.000 anos atrás, ainda é debatido, com hipóteses que envolvem mudanças climáticas e competição com os humanos modernos." },
+  ],
+  "Nemay": [
+    { from: -5000, to: -3000, text: "A identidade precisa desta entrada não é totalmente clara; as coordenadas do mapa situam-na na região de fronteira entre a atual Bielorrússia, a Polônia e a Ucrânia, possivelmente relacionada à cultura do Neman (ou Nemunas), um horizonte neolítico de caçadores-coletores-pescadores da bacia desse rio. De modo geral, tratava-se de comunidades que, como outras do mesmo cinturão florestal do leste europeu por volta do 5º milênio a.C., adotaram cerâmica rudimentar sem depender de agricultura, subsistindo da caça, da pesca e da coleta." },
+  ],
+  "Neolithic Farmers": [
+    { from: -9500, to: -7000, text: "Apesar do nome genérico, esta entrada do mapa corresponde a uma comunidade agrícola do alto curso dos rios Eufrates e Tigre, no sudeste da Anatólia (atual sudeste da Turquia) — uma das regiões-núcleo do chamado Crescente Fértil — e não à Europa. Nesse período, ainda dentro do neolítico pré-cerâmico, comunidades locais já cultivavam cereais como trigo e cevada e domesticavam ovelhas e cabras, muitos séculos antes de a agricultura se difundir para a Europa. É uma das áreas do mundo onde a transição para a vida agrícola sedentária ocorreu mais cedo, próxima a sítios famosos como Göbekli Tepe." },
+  ],
+  "Northmen": [
+    { from: 800, to: 800, text: "Por volta de 800, os povos escandinavos viviam organizados em sociedades agrárias e marítimas divididas em pequenos reinos e chefaturas, sem unidade política. Esse período marca o alvorecer da Era Viking, tradicionalmente datada do ataque ao mosteiro de Lindisfarne em 793, quando guerreiros e comerciantes nórdicos começaram a lançar expedições de saque, comércio e colonização por rios e mares que os levariam, nos séculos seguintes, a alcançar desde a Rússia até a América do Norte." },
+  ],
+  "Palatinate": [
+    { from: 1815, to: 1815, text: "O Palatinado Renano, região à margem esquerda do Reno, foi atribuído em 1815 pelo Congresso de Viena ao Reino da Baviera, tornando-se um exclave bávaro geograficamente separado do restante do reino por território de outros Estados alemães. Apesar dessa peculiaridade administrativa, permaneceu vinculado à Baviera por um século, até o fim da Primeira Guerra Mundial." },
+  ],
+  "Permians": [
+    { from: 800, to: 800, text: "Os permianos eram um povo de língua fino-úgrica estabelecido na bacia do rio Kama, na região de Perm, no nordeste da Rússia europeia, ancestrais dos atuais komis e udmurtes. Viviam da caça, da pesca e do comércio de peles, atividades favorecidas pelas densas florestas da região, mantendo contatos comerciais de longa distância que levavam produtos árticos até mercados mais distantes." },
+  ],
+  "Proto-Scythian culture": [
+    { from: -1000, to: -700, text: "A cultura proto-cita corresponde à fase formativa da cultura cita nas estepes do Ponto-Cáspio, anterior ao surgimento da clássica cultura guerreira nômade cita. Nesse período inicial, ainda não estavam plenamente consolidados os traços que marcariam os citas históricos, como a arte animalística e os grandiosos túmulos kurgan de suas elites. A partir do século VII a.C., essas comunidades dariam origem à confederação cita que dominaria as estepes até o século III a.C." },
+  ],
+  "Republic of Kraków": [
+    { from: 1815, to: 1815, text: "A Cidade Livre de Cracóvia, também chamada República de Cracóvia, foi um minúsculo Estado-cidade criado pelo Congresso de Viena em 1815 como território nominalmente independente e neutro, resultado de um compromisso entre Rússia, Prússia e Áustria, todas com pretensões sobre o antigo território polonês. Foi o último resquício de soberania polonesa até 1918, sobrevivendo até ser anexada pelo Império Austríaco em 1846." },
+  ],
+  "Rus' Khaganate": [
+    { from: 800, to: 800, text: "O chamado 'Canato da Rus' é uma entidade política pouco documentada, mencionada em fontes francas e bizantinas da época como governada por um chefe intitulado 'kagan'. Sua natureza exata permanece debatida entre historiadores: pode ter sido uma confederação de comerciantes e guerreiros escandinavos (varegues) atuante ao longo das rotas fluviais entre o Báltico e o Volga, embora sua localização precisa e sua real estrutura política sejam incertas. É frequentemente discutida como possível antecedente da futura Rus de Kiev, dos Rurikidas, mas a escassez de fontes primárias impõe cautela quanto a afirmações mais categóricas sobre essa relação." },
+  ],
+  "San Marino": [
+    { from: 1815, to: 1815, text: "A República de San Marino, minúsculo Estado inteiramente cercado por território italiano, é tradicionalmente apontada como a mais antiga república soberana ainda existente no mundo, com fundação lendária atribuída ao ano de 301. Foi um dos poucos Estados italianos a preservar sua independência ao longo das guerras napoleônicas e do subsequente Congresso de Viena de 1815, condição que mantém até os dias de hoje." },
+  ],
+  "Schleswig": [
+    { from: 1815, to: 1815, text: "O Ducado de Schleswig era, em 1815, um feudo dinamarquês possuído pelo rei da Dinamarca em união pessoal, permanecendo fora da recém-criada Confederação Germânica, ao contrário do vizinho ducado de Holsácia, que dela fazia parte. Essa situação ambígua — dois ducados ligados à coroa dinamarquesa, mas com estatuto diferente perante a Alemanha — daria origem, décadas depois, à chamada Questão de Schleswig-Holstein, importante fonte de conflito entre alemães e dinamarqueses." },
+  ],
+  "Skirii": [
+    { from: 350, to: 470, text: "Os esciros eram um pequeno povo germânico oriental que, como diversos outros grupos da região, tornou-se subordinado ao domínio huno durante o apogeu do império de Átila, para o qual forneciam contingentes militares. Após o colapso do poder huno em 453, tentaram se estabelecer como potência independente na bacia do Danúbio, mas foram derrotados pelos ostrogodos por volta de 469. São lembrados sobretudo por serem o povo de origem de Odoacro, o chefe militar germânico que, em 476, depôs o último imperador do Império Romano do Ocidente, Rômulo Augústulo, tornando-se rei da Itália." },
+  ],
+  "Slavonic tribes": [
+    { from: 800, to: 800, text: "Este rótulo genérico representa agrupamentos tribais eslavos ainda não diferenciados em Estados organizados, típicos da fase de expansão e assentamento dos povos de língua eslava pela Europa oriental. Por volta de 800, essas populações viviam em uniões tribais locais, sem unidade política, precedendo a consolidação de entidades como a futura Rus de Kiev, que só emergiria décadas depois sob lideranças varegues." },
+  ],
+  "Stentinello culture": [
+    { from: -5000, to: -4000, text: "A cultura de Stentinello foi uma cultura do neolítico médio da Sicília e do sul da Itália (Calábria), datada aproximadamente do 5º milênio a.C., considerada uma das primeiras sociedades agrícolas do Mediterrâneo central. É conhecida por seus povoados fortificados, cercados por fossos escavados na rocha, e por uma cerâmica decorada com padrões impressos e incisos, característica da chamada tradição da 'cerâmica impressa', que se espalhou do Oriente Próximo pelo Mediterrâneo." },
+  ],
+  "Steppe Mesolithic Hunter-Foragers": [
+    { from: -10000, to: -6000, text: "Populações mesolíticas adaptadas às paisagens abertas de estepe, que no dataset aparecem em faixas que vão do Cáucaso e das margens do Mar Negro até as franjas do Crescente Fértil, subsistiam sobretudo do acompanhamento sazonal de manadas de grandes herbívoros, como cavalos selvagens, auroques e gazelas. Diferentemente das populações litorâneas e florestais mais a oeste, sua economia dependia menos da pesca e da coleta de recursos de floresta e mais da caça em terrenos abertos. Usavam ferramentas microlíticas e provavelmente se deslocavam em pequenos grupos móveis, seguindo os padrões de migração da caça." },
+  ],
+  "Únětice": [
+    { from: -2300, to: -1600, text: "A cultura de Únětice foi uma das primeiras grandes culturas da Idade do Bronze na Europa Central, espalhando-se pela Boêmia, Polônia e leste da Alemanha. Destacou-se por uma metalurgia sofisticada em bronze e ouro, da qual o mais famoso testemunho é o Disco Celeste de Nebra, e por extensas redes comerciais que ligavam o mar Báltico ao Mediterrâneo. Seus ricos ajuares funerários de metais preciosos indicam uma sociedade já marcada por hierarquias sociais bem definidas." },
+  ],
+  "Veps": [
+    { from: 800, to: 800, text: "Os vepsianos eram um pequeno povo fínico estabelecido na região entre os lagos Ladoga, Onega e Bieloie, no noroeste da Rússia. Como diversos outros povos fino-úgricos dessa vasta zona florestal, viviam da caça, da pesca e da agricultura de coivara, sem organização política centralizada, mantendo modo de vida adaptado ao ambiente lacustre e florestal da região." },
+  ],
+  "Volga-Kamm": [
+    { from: -5000, to: -3000, text: "Esta entrada corresponde provavelmente à cultura do Volga-Kama, um horizonte neolítico de caçadores-coletores-pescadores da bacia dos rios Volga médio e Kama, na atual Rússia europeia, ativo aproximadamente entre o 5º e o 3º milênio a.C. Como outras culturas da mesma zona florestal, como a de Narva e a Cerâmica de Pente mais a oeste, adotou a produção de cerâmica sem depender da agricultura, mantendo uma economia baseada na pesca, na caça e na coleta de recursos da floresta." },
+  ],
+  "Wetzlar": [
+    { from: 1815, to: 1815, text: "Wetzlar era uma pequena cidade e território da região do Reno-Hesse, historicamente célebre por sediar o Tribunal Camaral Imperial (Reichskammergericht), a principal corte de justiça do Sacro Império Romano-Germânico, até a dissolução do Império em 1806. Após as guerras napoleônicas, esse modesto território foi incorporado à Prússia em 1815, integrando a nova Província do Reno." },
+  ],
 };
 
 function nearestPeriod(periods: EraSummary[], year: number): EraSummary {

@@ -46,7 +46,7 @@ MapLibre GL e Prisma/Neon.
   `src/lib/curatedTerritories.ts`) sobre regiões genéricas de
   "caçadores-coletores"/"nômades" do dataset, que são enormes em área mas
   pouco relevantes historicamente. Nomes em português também vêm desse
-  arquivo curado, que hoje traduz os ~1720 nomes únicos do dataset (das
+  arquivo curado, que hoje traduz os ~1770 nomes únicos do dataset (das
   34 snapshots vendorizadas) — cobertura de 100%. Se você adicionar anos
   novos ao dataset, nomes que não existiam antes vão aparecer em inglês
   até serem adicionados a `CURATED_TERRITORIES`. O rótulo é posicionado no centro de massa do
@@ -67,17 +67,25 @@ MapLibre GL e Prisma/Neon.
   `src/lib/territorySummaries.ts` (nenhuma chamada de API/rede em tempo de
   execução — funciona 100% offline). Cada território tem uma ou mais faixas
   de anos com texto próprio; a busca escolhe a faixa que contém o ano atual
-  (ou a mais próxima). É uma lista curada de ~1340 territórios — estados,
+  (ou a mais próxima). É uma lista curada de ~1400 territórios — estados,
   impérios, canatos, colônias e também categorias amplas de povos
   pré-históricos/indígenas (ex.: "caçadores-coletores da Amazônia", que é o
   que aparece ao clicar em boa parte da América do Sul antes da colonização).
-  Cobertura por região: Europa está essencialmente completa; África, Ásia
-  e as Américas têm cobertura ampla mas ainda incompleta, sobretudo entre
-  os milhares de nomes de povos indígenas muito granulares do dataset
-  (especialmente o vasto cluster de ~380 nações aborígenes australianas,
-  deliberadamente fora do escopo por ora) e nomes ainda sem tradução em
-  `curatedTerritories.ts`. Territórios fora da lista mostram um aviso de
-  fallback. Para adicionar/editar, mexa em `TERRITORY_SUMMARIES`.
+  Cobertura por região: Europa tem cobertura ampla (incluindo reinos
+  helenísticos, culturas pré-históricas/da Idade do Bronze e do Ferro,
+  povos da época das migrações e pequenos Estados da Confederação
+  Germânica de 1815); África, Ásia e as Américas também têm cobertura
+  ampla mas ainda incompleta, sobretudo entre os milhares de nomes de povos
+  indígenas muito granulares do dataset (especialmente o vasto cluster de
+  ~380 nações aborígenes australianas, deliberadamente fora do escopo por
+  ora) e nomes ainda sem tradução em `curatedTerritories.ts`. Uma rodada
+  anterior havia classificado a Europa como "essencialmente completa", mas
+  esse critério só considerava nomes que já tinham tradução — isso escondia
+  dezenas de nomes sem tradução nem resumo (ex.: os reinos diádocos
+  helenísticos, como o Reino de Lisímaco e o Reino de Cassandro). Uma rodada
+  seguinte corrigiu esse método de análise e fechou essa lacuna real.
+  Territórios fora da lista mostram um aviso de fallback. Para
+  adicionar/editar, mexa em `TERRITORY_SUMMARIES`.
 - **Busca de território**: campo de busca no canto superior esquerdo
   (`src/components/TerritorySearch.tsx`) para achar um território pelo nome
   em português sem precisar navegar o mapa manualmente. Ao escolher um
@@ -86,7 +94,7 @@ MapLibre GL e Prisma/Neon.
   o mapa nele e já abre o resumo. O índice de busca
   (`public/data/historical-basemaps/territory-index.json`) é gerado por
   `scripts/build-territory-index.mjs`, que varre todos os snapshots e
-  guarda, para cada um dos ~1720 territórios nomeados, o ano/centro de
+  guarda, para cada um dos ~1770 territórios nomeados, o ano/centro de
   maior área — rode `npm run data:territory-index` depois de adicionar ou
   editar anos do dataset.
 - **Reivindicações coloniais (camada curada nossa)**: o dataset representa
