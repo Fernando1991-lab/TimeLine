@@ -60,6 +60,21 @@ MapLibre GL e Prisma/Neon.
   representam terra sem um estado/povo definido atribuído naquele
   período, não é erro de carregamento. Uma legenda no canto explica isso,
   e as maiores dessas áreas ganham uma nota discreta "sem dados" no mapa.
+- **Linha do tempo detalhada + quiz (piloto)**: para um pequeno conjunto
+  piloto de impérios/civilizações historicamente centrais — hoje Roma
+  (Reino/República/Império/Bizâncio), Antigo Egito e Império Mongol —,
+  o painel de resumo mostra um botão "Linha do tempo detalhada e quiz"
+  que leva a uma página própria (`/imperio/[slug]`) com uma linha do
+  tempo cronológica de marcos históricos, uma lista de pessoas
+  importantes e um quiz de 20 perguntas de múltipla escolha com
+  correção e explicação imediatas. O conteúdo fica em
+  `src/lib/empireDeepDives.ts`, curado manualmente como o resto do
+  projeto; cada entrada é ligada ao mapa por uma lista de
+  `datasetNames` (os vários nomes que aquela civilização assume no
+  dataset ao longo do tempo, ex.: Roma aparece como "Rome", "Roman
+  Republic", "Roman Empire", "Western/Eastern Roman Empire" e
+  "Byzantine Empire" em anos diferentes). É deliberadamente um piloto
+  pequeno para validar o formato antes de expandir para mais impérios.
 - **Resumo por época**: clicar num território abre um painel com um resumo
   histórico daquele lugar **na era mostrada no slider** — clicar em "China"
   em 1 a.C. mostra a dinastia Han; em 1700, a dinastia Qing; em 2010, a

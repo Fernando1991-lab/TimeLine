@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import type { TimelineSnapshot } from "@/lib/timeline";
 import { nearestSnapshotIndex } from "@/lib/timeline";
 import TimelineSlider from "@/components/TimelineSlider";
@@ -10,6 +11,7 @@ import { translateTerritoryName } from "@/lib/curatedTerritories";
 import { summaryFor } from "@/lib/territorySummaries";
 import { colonialSummary } from "@/lib/colonialClaims";
 import { knownGapNote } from "@/lib/knownGapPeoples";
+import { deepDiveForTerritory } from "@/lib/empireDeepDives";
 import type { TerritoryIndexEntry, TerritorySearchResult } from "@/lib/territorySearch";
 import type { FlyToRequest } from "@/components/EmpireMap";
 
@@ -62,6 +64,7 @@ export default function TimelineExplorer() {
     (selected != null && currentYear != null ? summaryFor(selected, currentYear) : null) ??
     gapText ??
     "Ainda não há um resumo para este território neste período.";
+  const deepDive = selected != null ? deepDiveForTerritory(selected) : null;
 
   if (!snapshots) {
     return (
@@ -130,6 +133,14 @@ export default function TimelineExplorer() {
           <p className="mt-2 max-h-64 overflow-y-auto text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
             {panelText}
           </p>
+          {deepDive && (
+            <Link
+              href={`/imperio/${deepDive.slug}`}
+              className="mt-3 inline-flex items-center gap-1 rounded-lg bg-zinc-900 px-3 py-1.5 text-xs font-medium text-white hover:bg-zinc-700 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-300"
+            >
+              📖 Linha do tempo detalhada e quiz
+            </Link>
+          )}
         </div>
       )}
 
