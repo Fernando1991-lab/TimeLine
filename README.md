@@ -60,7 +60,7 @@ MapLibre GL e Prisma/Neon.
   representam terra sem um estado/povo definido atribuído naquele
   período, não é erro de carregamento. Uma legenda no canto explica isso,
   e as maiores dessas áreas ganham uma nota discreta "sem dados" no mapa.
-- **Linha do tempo detalhada + quiz**: para um conjunto de 24
+- **Linha do tempo detalhada + quiz**: para um conjunto de 26
   impérios/civilizações historicamente centrais, o painel de resumo
   mostra um botão "Linha do tempo detalhada e quiz" que leva a uma
   página própria (`/imperio/[slug]`) com uma linha do tempo cronológica
@@ -75,19 +75,22 @@ MapLibre GL e Prisma/Neon.
   Carolíngio, Califados Islâmicos (Omíada/Abássida/Córdoba), Sacro
   Império Romano-Germânico (962-1806); **Idade Moderna** — Império
   Asteca, Império Inca, Império Espanhol colonial, Império Português
-  colonial; **Idade Contemporânea** — Império do Brasil, Império
-  Francês colonial, Alemanha (Confederação Germânica → unificação
-  bismarckiana → Terceiro Reich → divisão e reunificação), Estados
-  Unidos (independência de 1776 ao século XXI); e cinco **arcos
-  históricos contínuos**, que cobrem uma mesma nação/civilização por
-  vários séculos sem se restringir a um único período: Império Persa
+  colonial; **Idade Contemporânea** — Império do Brasil, Brasil
+  República (Proclamação de 1889 aos dias atuais), Império Francês
+  colonial, Alemanha (Confederação Germânica → unificação bismarckiana
+  → Terceiro Reich → divisão e reunificação), Estados Unidos
+  (independência de 1776 ao século XXI); e seis **arcos históricos
+  contínuos**, que cobrem uma mesma nação/civilização por vários
+  séculos sem se restringir a um único período: Império Persa
   (Aquemênida/Parta/Sassânida), Rússia (Rus de Kiev → Moscóvia →
   Império Russo → URSS → hoje), China (dinastias Zhou/Qin/Han/... →
   Império Qing → República Popular), França (Capetíngios → Guerra dos
-  Cem Anos → Revolução Francesa/Napoleão → repúblicas até hoje) e
+  Cem Anos → Revolução Francesa/Napoleão → repúblicas até hoje),
   Império Britânico (Inglaterra anglo-saxônica/normanda → Tudors →
-  império colonial → descolonização) — além de Império Mongol e
-  Otomano. O conteúdo fica em `src/lib/empireDeepDives.ts`, curado
+  império colonial → descolonização) e Japão (era Heian → xogunatos →
+  Restauração Meiji → Segunda Guerra Mundial → potência econômica
+  pós-guerra) — além de Império Mongol e Otomano. O conteúdo fica em
+  `src/lib/empireDeepDives.ts`, curado
   manualmente como o resto do projeto; cada entrada é ligada ao mapa
   por uma lista de `datasetNames` (os vários nomes que aquela
   civilização assume no dataset ao longo do tempo, ex.: Roma aparece
