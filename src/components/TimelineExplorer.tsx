@@ -64,7 +64,7 @@ export default function TimelineExplorer() {
     (selected != null && currentYear != null ? summaryFor(selected, currentYear) : null) ??
     gapText ??
     "Ainda não há um resumo para este território neste período.";
-  const deepDive = selected != null ? deepDiveForTerritory(selected) : null;
+  const deepDive = selected != null ? deepDiveForTerritory(selected, currentYear) : null;
 
   if (!snapshots) {
     return (

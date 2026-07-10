@@ -60,25 +60,39 @@ MapLibre GL e Prisma/Neon.
   representam terra sem um estado/povo definido atribuído naquele
   período, não é erro de carregamento. Uma legenda no canto explica isso,
   e as maiores dessas áreas ganham uma nota discreta "sem dados" no mapa.
-- **Linha do tempo detalhada + quiz (piloto)**: para um pequeno conjunto
-  piloto de impérios/civilizações historicamente centrais — hoje Roma
-  (Reino/República/Império/Bizâncio), Antigo Egito, Império Mongol,
-  Grécia Antiga, Império Macedônico (Filipe II/Alexandre e os reinos
-  diádocos), Império Otomano e Império Persa (Aquemênida/Parta/
-  Sassânida) —, o painel de resumo mostra um botão "Linha do tempo
-  detalhada e quiz" que leva a uma página própria (`/imperio/[slug]`)
-  com uma linha do tempo cronológica de marcos históricos, uma lista de
-  pessoas importantes e um quiz de 20 perguntas de múltipla escolha com
-  correção e explicação imediatas. O conteúdo fica em
+- **Linha do tempo detalhada + quiz**: para um conjunto de 19
+  impérios/civilizações historicamente centrais, o painel de resumo
+  mostra um botão "Linha do tempo detalhada e quiz" que leva a uma
+  página própria (`/imperio/[slug]`) com uma linha do tempo cronológica
+  de marcos históricos, uma lista de pessoas importantes e um quiz de
+  20 perguntas de múltipla escolha com correção e explicação imediatas.
+  Cobertura atual, organizada por período (currículo escolar típico de
+  história): **Antiguidade Oriental** — Impérios Mesopotâmicos
+  (babilônios/assírios, Código de Hamurábi), Antigo Egito, Império
+  Persa (Aquemênida/Parta/Sassânida); **Antiguidade Clássica** — Grécia
+  Antiga, Império Macedônico (Filipe II/Alexandre), Roma
+  (Reino/República/Império, até 476 d.C.); **Idade Média** — Império
+  Bizantino (separado de Roma — ver nota abaixo), Império Carolíngio,
+  Califados Islâmicos (Omíada/Abássida/Córdoba); **Idade Moderna** —
+  Império Asteca, Império Inca, Império Espanhol colonial, Império
+  Português colonial; **Idade Contemporânea** — Império do Brasil,
+  Império Napoleônico, Império Britânico, Império Francês colonial,
+  além de Império Mongol e Otomano. O conteúdo fica em
   `src/lib/empireDeepDives.ts`, curado manualmente como o resto do
   projeto; cada entrada é ligada ao mapa por uma lista de
   `datasetNames` (os vários nomes que aquela civilização assume no
   dataset ao longo do tempo, ex.: Roma aparece como "Rome", "Roman
-  Republic", "Roman Empire", "Western/Eastern Roman Empire" e
-  "Byzantine Empire" em anos diferentes). Ainda é um piloto — 7
-  entradas de um universo de dezenas de impérios/civilizações que
-  poderiam ganhar o mesmo tratamento — mantido pequeno para validar o
-  formato antes de expandir.
+  Republic", "Roman Empire" e "Western Roman Empire" em anos
+  diferentes — note que Bizâncio ("Eastern Roman Empire"/"Byzantine
+  Empire") é uma entrada própria e separada, não faz mais parte do
+  verbete de Roma, para casar com a divisão didática usual entre
+  Antiguidade Clássica e Idade Média). Alguns nomes do dataset são
+  reaproveitados por séculos para entidades bem diferentes (ex.:
+  "France" cobre desde o reino medieval até a república atual) — nesses
+  casos a entrada tem também um `yearRange` opcional que restringe o
+  vínculo a uma janela de anos (ex.: o Império Napoleônico só se liga a
+  "France" entre 1799 e 1815); fora dessa janela, o clique cai de volta
+  no resumo normal por época, sem o botão de quiz.
 - **Resumo por época**: clicar num território abre um painel com um resumo
   histórico daquele lugar **na era mostrada no slider** — clicar em "China"
   em 1 a.C. mostra a dinastia Han; em 1700, a dinastia Qing; em 2010, a
