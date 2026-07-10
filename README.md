@@ -121,12 +121,15 @@ MapLibre GL e Prisma/Neon.
   Wikidata via SPARQL, mas esse host é bloqueado pela política de rede
   deste ambiente de desenvolvimento — então, como os outros arquivos
   curados deste projeto, o conteúdo é pesquisado e escrito manualmente
-  por nós, não gerado automaticamente. Cobertura atual: 60 povos/estados
-  distintos (105 entradas contando repetições em anos diferentes),
+  por nós, não gerado automaticamente. Cobertura atual: 70 povos/estados
+  distintos (115 entradas contando repetições em anos diferentes),
   mapeados sistematicamente a partir das maiores áreas "sem dados" do
   dataset inteiro — Heptarquia anglo-saxônica e estepes russas (700),
-  tribos celtas/ibéricas da Europa Ocidental (200 a.C.), culturas da
-  Idade do Bronze da Europa/Ásia Central (2000 a.C.), culturas
+  tribos celtas/ibéricas da Europa Ocidental (200 a.C.), a Gália, Ibéria,
+  Britânia, Trácia, Cítia, Sacas da Ásia Central e Numídia/Mouros em
+  500 a.C. (quando praticamente toda a Europa Ocidental e a faixa entre
+  o Mediterrâneo e a Ásia Central aparecem em branco no dataset), culturas
+  da Idade do Bronze da Europa/Ásia Central (2000 a.C.), culturas
   arqueológicas da Colômbia/Amazônia/Argentina (100 a.C.–1700), povos do
   sudoeste dos EUA e Mesoamérica (1000–1500), Reino Daju de Darfur
   (1279), Ternate/Tidore nas Molucas (1279–1400), Srivijaya/Langkasuka
