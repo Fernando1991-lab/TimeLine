@@ -100,6 +100,11 @@ export default function TimelineExplorer() {
           Marcadores roxos com <em>?</em>: povos/estados que sabemos existir
           numa área &quot;sem dados&quot;, mas sem fronteiras no nosso dataset principal.
         </p>
+        <p>
+          <span className="mr-1 inline-block h-2.5 w-2.5 translate-y-px rounded-sm border border-dotted border-violet-600 bg-violet-600/10 align-middle" />
+          Contorno pontilhado roxo: mesma coisa, mas para Estados/reinos
+          organizados cuja extensão aproximada já é bem documentada.
+        </p>
       </div>
 
       {selected && (

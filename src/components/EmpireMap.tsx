@@ -15,6 +15,7 @@ import {
 } from "@/lib/territoryLabels";
 import { colonialFeatureCollection } from "@/lib/colonialClaims";
 import { knownGapMarkersFor } from "@/lib/knownGapPeoples";
+import { knownStateContourFeatureCollection } from "@/lib/knownGapContours";
 
 const SOURCE_ID = "territories";
 const FILL_LAYER_ID = "territories-fill";
@@ -24,6 +25,10 @@ const COLONIAL_SOURCE = "colonial";
 const COLONIAL_FILL_LAYER = "colonial-fill";
 const COLONIAL_LINE_LAYER = "colonial-line";
 const HATCH_IMAGE = "colonial-hatch";
+
+const GAP_CONTOUR_SOURCE = "gap-contour";
+const GAP_CONTOUR_FILL_LAYER = "gap-contour-fill";
+const GAP_CONTOUR_LINE_LAYER = "gap-contour-line";
 
 // Plain ocean-colored background instead of a hosted basemap style: the
 // territory polygons are the whole point of this map, and this keeps the
@@ -342,6 +347,45 @@ export default function EmpireMap({ snapshot, onSelectTerritory, flyTo }: Props)
         map.getCanvas().style.cursor = "";
       });
 
+      // Curated approximate contours for a select subset of "known gap"
+      // entries (see knownGapContours.ts) -- only organized states with a
+      // reasonably documented extent, not nomadic/diffuse peoples. Styled
+      // as a dotted violet outline, distinct from the colonial hatch fill.
+      map.addSource(GAP_CONTOUR_SOURCE, {
+        type: "geojson",
+        data: { type: "FeatureCollection", features: [] },
+      });
+      map.addLayer({
+        id: GAP_CONTOUR_FILL_LAYER,
+        type: "fill",
+        source: GAP_CONTOUR_SOURCE,
+        paint: {
+          "fill-color": ["coalesce", ["get", "__color"], "#7c3aed"],
+          "fill-opacity": 0.12,
+        },
+      });
+      map.addLayer({
+        id: GAP_CONTOUR_LINE_LAYER,
+        type: "line",
+        source: GAP_CONTOUR_SOURCE,
+        layout: { "line-cap": "round", "line-join": "round" },
+        paint: {
+          "line-color": ["coalesce", ["get", "__color"], "#7c3aed"],
+          "line-width": 2.2,
+          "line-dasharray": [0.01, 1.6],
+        },
+      });
+      map.on("click", GAP_CONTOUR_FILL_LAYER, (event) => {
+        const feature = event.features?.[0];
+        onSelectTerritory((feature?.properties?.name as string | undefined) ?? null);
+      });
+      map.on("mouseenter", GAP_CONTOUR_FILL_LAYER, () => {
+        map.getCanvas().style.cursor = "pointer";
+      });
+      map.on("mouseleave", GAP_CONTOUR_FILL_LAYER, () => {
+        map.getCanvas().style.cursor = "";
+      });
+
       map.on("moveend", () => refreshLabelsRef.current());
 
       setReady(true);
@@ -381,6 +425,11 @@ export default function EmpireMap({ snapshot, onSelectTerritory, flyTo }: Props)
     const colonial = colonialFeatureCollection(snapshot.year);
     const colonialSource = map.getSource(COLONIAL_SOURCE) as maplibregl.GeoJSONSource | undefined;
     colonialSource?.setData(colonial);
+
+    // Curated "known state" contour overlay for this snapshot's year.
+    const gapContours = knownStateContourFeatureCollection(snapshot.year);
+    const gapContourSource = map.getSource(GAP_CONTOUR_SOURCE) as maplibregl.GeoJSONSource | undefined;
+    gapContourSource?.setData(gapContours);
     colonialMarkersRef.current.forEach((marker) => marker.remove());
     colonialMarkersRef.current = colonial.features
       .map((feature) => {

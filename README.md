@@ -236,6 +236,27 @@ MapLibre GL e Prisma/Neon.
   (1279) e os tehuelches da Patagônia (1715). Entre outros. Para
   adicionar mais casos, edite `KNOWN_GAP_MARKERS` (chave = ano do
   snapshot).
+- **Contornos de Estados/reinos documentados**: para um subconjunto dos
+  marcadores de "lacuna conhecida" acima — só os que eram Estados/reinos
+  organizados com extensão territorial aproximada razoavelmente
+  documentada (não tribos nômades, populações dispersas de
+  caçadores-coletores ou "culturas" arqueológicas sem centro político) —
+  `src/lib/knownGapContours.ts` desenha também um contorno poligonal
+  aproximado, reaproveitando a mesma técnica de `colonialClaims.ts`, mas
+  com estilo visual distinto (contorno pontilhado roxo, sem hatch) para
+  não ser confundido com reivindicações coloniais. Cada nome em
+  `KNOWN_STATE_CONTOURS` precisa bater exatamente com um nome já
+  existente em `KNOWN_GAP_MARKERS`, já que o clique reaproveita a mesma
+  nota curada (via `knownGapNote`), em vez de duplicar o texto. Cobertura
+  atual: 24 entidades (36 entradas contando repetições em anos
+  diferentes) — a Heptarquia anglo-saxônica completa (700), reinos
+  árabes do Nejd/Hejaz da Antiguidade ao Primeiro Estado Saudita (-323 a
+  1815), o Canato Cázaro e os Búlgaros do Volga (700), Sogdiana/Corásmia/
+  Zhangzhung (600), Srivijaya/Chenla/Cidades-Estado Pyu/Ternate/Tidore no
+  Sudeste Asiático (700–1400), o Império de Caném/Reino Cristão da
+  Etiópia/Reino Daju de Darfur (1279), o reino coreano de Buyeo (1 a.C.),
+  e confederações/Estados indígenas americanos — Muísca, Tarasco/
+  Purépecha, Powhatan, Iroquesa/Haudenosaunee (900–1700).
 - **Postgres/Neon (opcional, legado)**: o projeto ainda inclui um schema
   Prisma, um seed e a rota `/api/empires` de uma abordagem anterior baseada
   em banco. Não é mais usada pelo painel (os resumos agora são estáticos),
