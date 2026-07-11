@@ -60,7 +60,7 @@ MapLibre GL e Prisma/Neon.
   representam terra sem um estado/povo definido atribuído naquele
   período, não é erro de carregamento. Uma legenda no canto explica isso,
   e as maiores dessas áreas ganham uma nota discreta "sem dados" no mapa.
-- **Linha do tempo detalhada + quiz**: para um conjunto de 31
+- **Linha do tempo detalhada + quiz**: para um conjunto de 32
   impérios/civilizações historicamente centrais, o painel de resumo
   mostra um botão "Linha do tempo detalhada e quiz" que leva a uma
   página própria (`/imperio/[slug]`) com uma linha do tempo cronológica
@@ -95,17 +95,24 @@ MapLibre GL e Prisma/Neon.
   (Capetíngios → Guerra dos Cem Anos → Revolução Francesa/Napoleão →
   repúblicas até hoje), Império Britânico (Inglaterra
   anglo-saxônica/normanda → Tudors → império colonial →
-  descolonização) e Japão (era Heian → xogunatos → Restauração Meiji →
-  Segunda Guerra Mundial → potência econômica pós-guerra) — além de
-  Império Mongol e Otomano. Verbetes que são historicamente contínuos
-  entre si mas foram divididos em entradas separadas por cobrirem
-  eras/regimes distintos (ex.: Brasil Colônia/Império do
-  Brasil/Brasil República, Império Português/Brasil Colônia, Império
-  Otomano/Turquia, Império Persa/Irã, Antigo Egito/Egito Moderno,
-  Roma/Cartago, França/Império Francês colonial) mostram um bloco "Ver
-  também" logo abaixo da introdução, com um link direto para o
-  verbete relacionado, via o campo opcional `relatedSlugs`. O
-  conteúdo fica em `src/lib/empireDeepDives.ts`, curado
+  descolonização), Japão (era Heian → xogunatos → Restauração Meiji →
+  Segunda Guerra Mundial → potência econômica pós-guerra) e Índia
+  (Máuria/Ashoka → Gupta → Sultanato de Deli → Mogóis → Raj Britânico
+  → independência e Partição de 1947 → hoje) — além de Império Mongol
+  e Otomano. Verbetes que são historicamente contínuos entre si mas
+  foram divididos em entradas separadas por cobrirem eras/regimes
+  distintos, ou que representam a mesma história vista por lados
+  diferentes (colônia vs. metrópole), mostram um bloco "Ver também"
+  logo abaixo da introdução, com um link direto para o verbete
+  relacionado, via o campo opcional `relatedSlugs` — ex.: Brasil
+  Colônia/Império do Brasil/Brasil República, Império
+  Português/Brasil Colônia, Império Otomano/Turquia, Império
+  Persa/Irã, Antigo Egito/Egito Moderno, Roma/Cartago,
+  Roma/Bizâncio, Grécia Antiga/Império Macedônico, Império
+  Carolíngio/Sacro Império/Alemanha, Estados Unidos/Império
+  Britânico, Império Britânico/Índia, Império Espanhol/Astecas/Incas,
+  França/Império Francês colonial. O conteúdo fica em
+  `src/lib/empireDeepDives.ts`, curado
   manualmente como o resto do projeto; cada entrada é ligada ao mapa
   por uma lista de `datasetNames` (os vários nomes que aquela
   civilização assume no dataset ao longo do tempo, ex.: Roma aparece
@@ -128,8 +135,13 @@ MapLibre GL e Prisma/Neon.
   Já "France"/"Kingdom of France" e as várias grafias de
   Inglaterra/Reino Unido não têm `yearRange`: como França e Império
   Britânico agora cobrem o arco histórico completo dessas nações, o
-  quiz aparece para qualquer ano em
-  que esses nomes existam no dataset.
+  quiz aparece para qualquer ano em que esses nomes existam no
+  dataset. Nomes como "British Raj" e "British East India Company",
+  que no dataset representam o domínio britânico sobre a Índia, foram
+  deliberadamente atribuídos ao verbete "Índia" (não a "Império
+  Britânico"), para que quem clique no território mostrado como Índia
+  no mapa veja a história contada do ponto de vista indiano, não do
+  colonizador; os dois verbetes se linkam via "Ver também".
 - **Resumo por época**: clicar num território abre um painel com um resumo
   histórico daquele lugar **na era mostrada no slider** — clicar em "China"
   em 1 a.C. mostra a dinastia Han; em 1700, a dinastia Qing; em 2010, a
