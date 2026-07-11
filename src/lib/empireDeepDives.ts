@@ -42,6 +42,11 @@ export type EmpireDeepDive = {
   // Omit for dataset names that are inherently unambiguous (e.g. "Aztec
   // Empire", "Byzantine Empire").
   yearRange?: [number, number];
+  // Slugs of other dives that are historically continuous with this one
+  // (predecessor/successor nations, or a mainland vs. colonial split),
+  // shown as "Ver também" links on the deep-dive page. Not necessarily
+  // symmetric in the source data, but kept symmetric by convention.
+  relatedSlugs?: string[];
   intro: string;
   milestones: Milestone[];
   keyFigures: KeyFigure[];
@@ -840,6 +845,7 @@ export const EMPIRE_DEEP_DIVES: EmpireDeepDive[] = [
     slug: "imperio-otomano",
     ptName: "Império Otomano",
     datasetNames: ["Ottoman Empire", "Ottoman Sultanate"],
+    relatedSlugs: ["turquia"],
     intro: "O Império Otomano foi um dos estados mais duradouros e influentes da história, fundado por volta de 1299 quando Osmã I liderou um pequeno beilhado turcomano no noroeste da Anatólia. Ao longo dos séculos XIV e XV, os otomanos expandiram-se pelos Bálcãs e pela Anatólia, culminando na conquista de Constantinopla em 1453 por Maomé II, o que pôs fim ao milenar Império Bizantino. Sob Solimão, o Magnífico, no século XVI, o império atingiu seu apogeu político, militar e cultural, estendendo-se do centro da Europa ao Oriente Médio e ao Norte da África. A partir do fracasso do segundo cerco a Viena, em 1683, teve início um longo e gradual declínio territorial e institucional, agravado por guerras, perda de províncias nos Bálcãs e pressões das potências europeias. O império chegou ao fim após a derrota na Primeira Guerra Mundial, com a abolição do sultanato em 1922 e a proclamação da República da Turquia por Mustafá Kemal Atatürk em 1923.",
     milestones: [
       { year: 1299, label: "1299", title: "Fundação do beilhado otomano", text: "Osmã I liderou um pequeno principado turcomano (beilhado) na região da Bitínia, no noroeste da Anatólia, na fronteira com o Império Bizantino. Esse pequeno estado guerreiro, nascido em meio a outros beilhados turcos da região, deu origem à dinastia otomana. A data de 1299 é convencionalmente usada para marcar o início da história otomana." },
@@ -997,6 +1003,7 @@ export const EMPIRE_DEEP_DIVES: EmpireDeepDive[] = [
     slug: "imperio-persa",
     ptName: "Império Persa",
     datasetNames: ["Achaemenid Empire", "Parthia", "Parthian Empire", "Sasanian Empire", "Sasanian dependencies"],
+    relatedSlugs: ["ira"],
     intro: "O Império Persa constitui um dos maiores arcos civilizacionais da Antiguidade, atravessando mais de mil anos por meio de três grandes dinastias sucessivas. A primeira fase, o Império Aquemênida (c. 550-330 a.C.), fundada por Ciro, o Grande, uniu vastos territórios entre o vale do Indo e o Mediterrâneo sob um sofisticado sistema administrativo de satrápias. Após a conquista de Alexandre, o Grande e um período de domínio helenístico selêucida, a tradição persa foi retomada pelo Império Parta (c. 247 a.C.-224 d.C.), famoso por sua poderosa cavalaria de arqueiros montados, e depois pelo Império Sassânida (224-651 d.C.), que viveu seu apogeu sob Cosroes I e travou guerras constantes contra Roma e Bizâncio. Apesar da interrupção representada pelo domínio grego, essas dinastias compartilharam língua, religião e instituições, mantendo viva uma identidade persa/iraniana contínua até a conquista árabe-islâmica, que encerrou definitivamente o mundo pré-islâmico em 651 d.C.",
     milestones: [
       { year: -550, label: "550 a.C.", title: "Ciro, o Grande funda o Império Aquemênida", text: "Ciro derrotou o rei medo Astíages e unificou medos e persas sob seu comando, dando origem ao Império Aquemênida. Em poucas décadas, esse império se tornaria o maior já visto até então na Antiguidade." },
@@ -2398,6 +2405,7 @@ export const EMPIRE_DEEP_DIVES: EmpireDeepDive[] = [
     ptName: "Império do Brasil",
     datasetNames: ["Kingdom of Brazil"],
     yearRange: [1822, 1889],
+    relatedSlugs: ["brasil-republica"],
     intro: "O Império do Brasil existiu de 1822 a 1889, período em que o país foi governado por dois imperadores da dinastia de Bragança. O Primeiro Reinado, sob D. Pedro I, foi marcado por forte autoritarismo e conflitos com a elite política, terminando em sua abdicação em 1831. Seguiu-se o Período Regencial, uma fase de instabilidade em que crianças ou representantes governaram em nome do futuro imperador, enquanto diversas revoltas regionais eclodiam pelo país. O Segundo Reinado, sob D. Pedro II, trouxe maior estabilidade política, viu a economia cafeeira se tornar o motor da riqueza nacional, envolveu o Brasil na longa e custosa Guerra do Paraguai, e assistiu ao lento fim da escravidão, processo que culminou na Lei Áurea de 1888 e, pouco depois, na Proclamação da República em 1889.",
     milestones: [
       { year: 1822, label: "1822", title: "Independência e coroação de D. Pedro I", text: "Em 7 de setembro de 1822, D. Pedro proclamou a independência do Brasil em relação a Portugal. Em dezembro do mesmo ano, foi coroado imperador com o título de D. Pedro I, dando início ao Primeiro Reinado. A independência não rompeu totalmente os laços com a elite tradicional, e o novo império manteve estruturas escravistas e uma sociedade profundamente desigual." },
@@ -2551,6 +2559,7 @@ export const EMPIRE_DEEP_DIVES: EmpireDeepDive[] = [
     slug: "franca",
     ptName: "França",
     datasetNames: ["Kingdom of France", "France"],
+    relatedSlugs: ["imperio-frances"],
     intro: "A história da França é uma das mais longas e influentes da Europa, com raízes que remontam à fragmentação do Império Carolíngio no século IX e à ascensão da dinastia Capetíngia em 987. Ao longo da Idade Média, os reis franceses enfrentaram a Inglaterra na longa Guerra dos Cem Anos, conflito em que a jovem Joana d'Arc se tornou símbolo da resistência nacional, e consolidaram progressivamente seu poder até o auge do absolutismo sob Luís XIV, o Rei Sol, símbolo do fausto de Versalhes. Em 1789, a Revolução Francesa derrubou a monarquia absoluta e lançou ideais de liberdade e igualdade que ecoariam pelo mundo, abrindo caminho, poucos anos depois, para a ascensão de Napoleão Bonaparte e seu vasto império, que redesenhou o mapa da Europa antes de ruir em Waterloo, em 1815. O século XIX seguinte foi marcado por sucessivas mudanças de regime — monarquias, repúblicas e um novo império sob Napoleão III —, até a derrota na Guerra Franco-Prussiana consolidar a Terceira República em 1870. No século XX, a França enfrentou a devastação de duas guerras mundiais, incluindo a ocupação nazista e a libertação liderada por Charles de Gaulle, que fundaria em 1958 a Quinta República, regime que governa o país até hoje. Essa trajetória de mais de mil anos revela como uma mesma nação atravessou fragmentação feudal, absolutismo, revolução, império e democracia moderna, mantendo-se um dos protagonistas centrais da história europeia e mundial.",
     milestones: [
       { year: 843, label: "843", title: "O Tratado de Verdun e o nascimento da Francia Ocidental", text: "Em 843, o Tratado de Verdun dividiu o antigo Império Carolíngio entre os netos de Carlos Magno, dando origem à Francia Ocidental, embrião do que se tornaria o reino da França. Esse processo de fragmentação, já detalhado em outro verbete deste site sobre o Império Carolíngio, marcou o início de uma trajetória própria para os territórios francos ocidentais. Nos séculos seguintes, o poder do rei franco ocidental seria cada vez mais disputado por poderosos senhores feudais, até a ascensão de uma nova dinastia no fim do século X." },
@@ -2891,6 +2900,7 @@ export const EMPIRE_DEEP_DIVES: EmpireDeepDive[] = [
     slug: "imperio-frances",
     ptName: "Império Francês (colonial)",
     datasetNames: ["Algeria (France)", "Congo (France)", "Madagascar (France)", "Morocco (France)", "New France", "Syria (France)", "Martinique (France)", "French Indochina"],
+    relatedSlugs: ["franca"],
     intro: "O império colonial francês teve duas fases distintas: o primeiro império colonial, construído nas Américas entre os séculos XVII e XVIII (como a Nova França, no atual Canadá, e ilhas caribenhas como a Martinica), foi em grande parte perdido para a Grã-Bretanha após a Guerra dos Sete Anos (1756-1763). O segundo império colonial francês, foco deste verbete, formou-se sobretudo na África e na Ásia ao longo do século XIX, no contexto do neocolonialismo e do imperialismo europeu que buscava mercados, matérias-primas e prestígio internacional. A partir da conquista da Argélia em 1830, a França expandiu seu domínio pelo norte e oeste da África, por Madagascar e pelo Sudeste Asiático (Indochina Francesa), consolidando-se como o segundo maior império colonial do mundo, atrás apenas do britânico. A Conferência de Berlim (1884-1885), organizada pelas potências europeias, formalizou regras para a chamada Partilha da África, legitimando a ocupação de territórios sem qualquer participação dos povos africanos nas decisões. As rivalidades entre impérios, como as crises diplomáticas entre França e Alemanha por causa do Marrocos, alimentaram tensões que, somadas a outros fatores, contribuíram para a eclosão da Primeira Guerra Mundial (1914-1918), conflito no qual a França também recrutou soldados de suas colônias.",
     milestones: [
       { year: 1608, label: "1608", title: "Fundação de Quebec", text: "O explorador francês Samuel de Champlain funda a cidade de Quebec, às margens do rio São Lourenço, dando início à colônia da Nova França na América do Norte. A colônia baseava-se principalmente no comércio de peles e em missões religiosas católicas. Ao longo do século XVII, a França expandiu sua presença por regiões que hoje correspondem ao Canadá e a partes dos Estados Unidos, incluindo a Louisiana." },
@@ -3835,6 +3845,7 @@ export const EMPIRE_DEEP_DIVES: EmpireDeepDive[] = [
     slug: "brasil-republica",
     ptName: "Brasil República",
     datasetNames: ["Brazil"],
+    relatedSlugs: ["imperio-do-brasil"],
     intro: "Em 15 de novembro de 1889, um golpe militar liderado pelo marechal Deodoro da Fonseca depôs o imperador Dom Pedro II e proclamou a República dos Estados Unidos do Brasil, encerrando quase sete décadas de monarquia constitucional. A chamada República Velha (1889-1930) foi marcada pela Constituição de 1891, de inspiração federalista e presidencialista, e pelo domínio político das oligarquias agrárias de São Paulo e Minas Gerais, na chamada política do café com leite. A Revolução de 1930 encerrou esse arranjo e levou Getúlio Vargas ao poder, que governaria de forma intermitente até 1954, incluindo o período ditatorial do Estado Novo (1937-1945). Seguiu-se uma fase democrática marcada pela industrialização acelerada de Juscelino Kubitschek e pela construção de Brasília, interrompida pelo golpe militar de 1964, que instaurou uma ditadura de 21 anos caracterizada por forte repressão política, censura e violações de direitos humanos, especialmente após o Ato Institucional nº 5, de 1968. A abertura política, iniciada com a Lei da Anistia de 1979, culminou na redemocratização de 1985 e na promulgação da Constituição de 1988, conhecida como Constituição Cidadã. Desde então, o Brasil consolidou sua democracia, atravessando o Plano Real, dois processos de impeachment presidencial e alternâncias de governo, até chegar aos dias atuais como a maior democracia da América Latina.",
     milestones: [
       { year: 1889, label: "Proclamação da República", title: "Proclamação da República", text: "Em 15 de novembro de 1889, um golpe militar liderado pelo marechal Deodoro da Fonseca depôs o imperador Dom Pedro II, que partiu em exílio para a Europa poucos dias depois. Foi proclamada a República dos Estados Unidos do Brasil, com Deodoro assumindo a chefia de um governo provisório. O evento encerrou 67 anos de monarquia constitucional e inaugurou o período republicano, ainda vigente." },

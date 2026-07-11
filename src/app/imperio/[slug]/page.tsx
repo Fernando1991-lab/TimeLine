@@ -31,6 +31,10 @@ export default async function EmpireDeepDivePage({
   const dive = deepDiveBySlug(slug);
   if (!dive) notFound();
 
+  const relatedDives = (dive.relatedSlugs ?? [])
+    .map((relatedSlug) => deepDiveBySlug(relatedSlug))
+    .filter((d): d is NonNullable<typeof d> => d !== null);
+
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
       <Link
@@ -46,6 +50,21 @@ export default async function EmpireDeepDivePage({
       <p className="mt-3 text-base leading-relaxed text-zinc-600 dark:text-zinc-300">
         {dive.intro}
       </p>
+
+      {relatedDives.length > 0 && (
+        <div className="mt-4 flex flex-wrap items-center gap-2 text-sm">
+          <span className="text-zinc-500 dark:text-zinc-400">Ver também:</span>
+          {relatedDives.map((related) => (
+            <Link
+              key={related.slug}
+              href={`/imperio/${related.slug}`}
+              className="rounded-full border border-zinc-300 px-3 py-1 text-zinc-700 hover:border-zinc-400 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-200 dark:hover:border-zinc-600 dark:hover:bg-zinc-800"
+            >
+              {related.ptName} →
+            </Link>
+          ))}
+        </div>
+      )}
 
       <section className="mt-10">
         <h2 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
