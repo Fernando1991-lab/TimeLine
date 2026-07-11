@@ -60,7 +60,7 @@ MapLibre GL e Prisma/Neon.
   representam terra sem um estado/povo definido atribuído naquele
   período, não é erro de carregamento. Uma legenda no canto explica isso,
   e as maiores dessas áreas ganham uma nota discreta "sem dados" no mapa.
-- **Linha do tempo detalhada + quiz**: para um conjunto de 26
+- **Linha do tempo detalhada + quiz**: para um conjunto de 28
   impérios/civilizações historicamente centrais, o painel de resumo
   mostra um botão "Linha do tempo detalhada e quiz" que leva a uma
   página própria (`/imperio/[slug]`) com uma linha do tempo cronológica
@@ -75,22 +75,30 @@ MapLibre GL e Prisma/Neon.
   Carolíngio, Califados Islâmicos (Omíada/Abássida/Córdoba), Sacro
   Império Romano-Germânico (962-1806); **Idade Moderna** — Império
   Asteca, Império Inca, Império Espanhol colonial, Império Português
-  colonial; **Idade Contemporânea** — Império do Brasil, Brasil
-  República (Proclamação de 1889 aos dias atuais), Império Francês
-  colonial, Alemanha (Confederação Germânica → unificação bismarckiana
-  → Terceiro Reich → divisão e reunificação), Estados Unidos
-  (independência de 1776 ao século XXI); e seis **arcos históricos
-  contínuos**, que cobrem uma mesma nação/civilização por vários
-  séculos sem se restringir a um único período: Império Persa
-  (Aquemênida/Parta/Sassânida), Rússia (Rus de Kiev → Moscóvia →
+  colonial, Irã (Império Safávida de 1501 → dinastias Afsharida/Qajar →
+  Pahlavi → República Islâmica de hoje); **Idade Contemporânea** —
+  Império do Brasil, Brasil República (Proclamação de 1889 aos dias
+  atuais), Império Francês colonial, Alemanha (Confederação Germânica
+  → unificação bismarckiana → Terceiro Reich → divisão e reunificação),
+  Estados Unidos (independência de 1776 ao século XXI), Turquia
+  (sucessora do Império Otomano, República de 1923 até hoje); e seis
+  **arcos históricos contínuos**, que cobrem uma mesma nação/civilização
+  por vários séculos sem se restringir a um único período: Império
+  Persa (Aquemênida/Parta/Sassânida), Rússia (Rus de Kiev → Moscóvia →
   Império Russo → URSS → hoje), China (dinastias Zhou/Qin/Han/... →
   Império Qing → República Popular), França (Capetíngios → Guerra dos
   Cem Anos → Revolução Francesa/Napoleão → repúblicas até hoje),
   Império Britânico (Inglaterra anglo-saxônica/normanda → Tudors →
   império colonial → descolonização) e Japão (era Heian → xogunatos →
   Restauração Meiji → Segunda Guerra Mundial → potência econômica
-  pós-guerra) — além de Império Mongol e Otomano. O conteúdo fica em
-  `src/lib/empireDeepDives.ts`, curado
+  pós-guerra) — além de Império Mongol e Otomano. Verbetes que são
+  historicamente contínuos entre si mas foram divididos em duas
+  entradas por cobrirem eras/regimes distintos (ex.: Império do
+  Brasil/Brasil República, Império Otomano/Turquia, Império
+  Persa/Irã, França/Império Francês colonial) mostram um bloco "Ver
+  também" logo abaixo da introdução, com um link direto para o
+  verbete relacionado, via o campo opcional `relatedSlugs`. O
+  conteúdo fica em `src/lib/empireDeepDives.ts`, curado
   manualmente como o resto do projeto; cada entrada é ligada ao mapa
   por uma lista de `datasetNames` (os vários nomes que aquela
   civilização assume no dataset ao longo do tempo, ex.: Roma aparece
@@ -101,15 +109,18 @@ MapLibre GL e Prisma/Neon.
   usual entre Antiguidade Clássica e Idade Média). Alguns nomes do
   dataset são reaproveitados por séculos para entidades bem diferentes
   (ex.: "Kingdom of Brazil" aparece tanto no auge do Império do Brasil
-  quanto, por uma anomalia do dataset, já sob a República) — nesses
-  casos a entrada tem também um `yearRange` opcional que restringe o
-  vínculo a uma janela de anos (ex.: o Império do Brasil só se liga a
-  "Kingdom of Brazil" entre 1822 e 1889); fora dessa janela, o clique
-  cai de volta no resumo normal por época, sem o botão de quiz. Já
-  "France"/"Kingdom of France" e as várias grafias de
-  Inglaterra/Reino Unido não têm `yearRange`: como França e Império
-  Britânico agora cobrem o arco histórico completo dessas nações, o
-  quiz aparece para qualquer ano em que esses nomes existam no dataset.
+  quanto, por uma anomalia do dataset, já sob a República; "Persia"
+  aparece tanto no Império Sassânida antigo quanto na Pérsia Qajar do
+  século XIX) — nesses casos a entrada tem também um `yearRange`
+  opcional que restringe o vínculo a uma janela de anos (ex.: o Irã só
+  se liga a "Persia" entre 1500 e 2010, deixando de fora o ano 400 d.C.,
+  que nesse dataset já pertence à era sassânida coberta pelo
+  Império Persa); fora dessa janela, o clique cai de volta no resumo
+  normal por época, sem o botão de quiz. Já "France"/"Kingdom of
+  France" e as várias grafias de Inglaterra/Reino Unido não têm
+  `yearRange`: como França e Império Britânico agora cobrem o arco
+  histórico completo dessas nações, o quiz aparece para qualquer ano em
+  que esses nomes existam no dataset.
 - **Resumo por época**: clicar num território abre um painel com um resumo
   histórico daquele lugar **na era mostrada no slider** — clicar em "China"
   em 1 a.C. mostra a dinastia Han; em 1700, a dinastia Qing; em 2010, a
