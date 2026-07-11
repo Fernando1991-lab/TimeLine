@@ -203,24 +203,39 @@ MapLibre GL e Prisma/Neon.
   Wikidata via SPARQL, mas esse host é bloqueado pela política de rede
   deste ambiente de desenvolvimento — então, como os outros arquivos
   curados deste projeto, o conteúdo é pesquisado e escrito manualmente
-  por nós, não gerado automaticamente. Cobertura atual: 70 povos/estados
-  distintos (115 entradas contando repetições em anos diferentes),
-  mapeados sistematicamente a partir das maiores áreas "sem dados" do
-  dataset inteiro — Heptarquia anglo-saxônica e estepes russas (700),
-  tribos celtas/ibéricas da Europa Ocidental (200 a.C.), a Gália, Ibéria,
-  Britânia, Trácia, Cítia, Sacas da Ásia Central e Numídia/Mouros em
-  500 a.C. (quando praticamente toda a Europa Ocidental e a faixa entre
-  o Mediterrâneo e a Ásia Central aparecem em branco no dataset), culturas
-  da Idade do Bronze da Europa/Ásia Central (2000 a.C.), culturas
-  arqueológicas da Colômbia/Amazônia/Argentina (100 a.C.–1700), povos do
-  sudoeste dos EUA e Mesoamérica (1000–1500), Reino Daju de Darfur
-  (1279), Ternate/Tidore nas Molucas (1279–1400), Srivijaya/Langkasuka
-  no Sudeste Asiático (100–700), confederações indígenas do leste da
-  América do Norte no contato colonial (1500/1700), o vasto vazio entre
-  a Europa Oriental e a China em 600 d.C. (eslavos antes do Danúbio,
-  Sogdiana, Corásmia, Tocaristão pós-heftalita e o reino tibetano de
-  Zhangzhung), entre outros. Para adicionar mais casos, edite
-  `KNOWN_GAP_MARKERS` (chave = ano do snapshot).
+  por nós, não gerado automaticamente. Cobertura atual: 108 povos/estados
+  distintos (243 entradas contando repetições em anos diferentes, cobrindo
+  37 dos 53 anos do dataset), mapeados sistematicamente a partir das
+  maiores áreas "sem dados" do dataset inteiro — Heptarquia anglo-saxônica
+  e estepes russas (700), tribos celtas/ibéricas da Europa Ocidental (200
+  a.C.), a Gália, Ibéria, Britânia, Trácia, Cítia, Sacas da Ásia Central e
+  Numídia/Mouros em 500 a.C. (quando praticamente toda a Europa Ocidental
+  e a faixa entre o Mediterrâneo e a Ásia Central aparecem em branco no
+  dataset), culturas da Idade do Bronze da Europa/Ásia Central (2000
+  a.C.), culturas arqueológicas da Colômbia/Amazônia/Argentina (100
+  a.C.–1700), povos do sudoeste dos EUA e Mesoamérica (1000–1500), Reino
+  Daju de Darfur (1279), Ternate/Tidore nas Molucas (1279–1400),
+  Srivijaya/Langkasuka no Sudeste Asiático (100–700), confederações
+  indígenas do leste da América do Norte no contato colonial (1500/1700),
+  o vasto vazio entre a Europa Oriental e a China em 600 d.C. (eslavos
+  antes do Danúbio, Sogdiana, Corásmia, Tocaristão pós-heftalita e o reino
+  tibetano de Zhangzhung); e, numa segunda rodada focada nas maiores
+  áreas cinzas recorrentes ao longo de toda a linha do tempo (não só um
+  ano isolado): Escandinávia meridional e o cinturão florestal
+  russo/siberiano ocidental (323 a.C./500 a.C.), o interior da Península
+  Arábica desde tribos beduínas pré-islâmicas até o Primeiro Estado
+  Saudita de 1744 (26 anos diferentes, de 500 a.C. a 1815), o Sudeste
+  Asiático marítimo — Indonésia, Filipinas, Bornéu, Nova Guiné, Indochina
+  — da pré-história austronésia a Ternate/Majapahit (22 anos, de 10.000
+  a.C. a 1400), a tradição Hopewell e a Confederação Iroquesa na América
+  do Norte oriental (10 anos, de 100 a.C. a 1700), Teotihuacán/tumbas de
+  tiro no México ocidental e Chaco Canyon/Casas Grandes no sudoeste dos
+  EUA (9 anos, de 100 a.C. a 1200), sociedades ribeirinhas e o alto Xingu
+  na Amazônia pré e pós-contato (1492/1783), e casos avulsos como o reino
+  coreano de Buyeo (1 a.C.), a Etiópia salomônica e o Império de Caném
+  (1279) e os tehuelches da Patagônia (1715). Entre outros. Para
+  adicionar mais casos, edite `KNOWN_GAP_MARKERS` (chave = ano do
+  snapshot).
 - **Postgres/Neon (opcional, legado)**: o projeto ainda inclui um schema
   Prisma, um seed e a rota `/api/empires` de uma abordagem anterior baseada
   em banco. Não é mais usada pelo painel (os resumos agora são estáticos),
