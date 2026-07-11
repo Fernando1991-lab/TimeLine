@@ -248,15 +248,23 @@ MapLibre GL e Prisma/Neon.
   `KNOWN_STATE_CONTOURS` precisa bater exatamente com um nome já
   existente em `KNOWN_GAP_MARKERS`, já que o clique reaproveita a mesma
   nota curada (via `knownGapNote`), em vez de duplicar o texto. Cobertura
-  atual: 24 entidades (36 entradas contando repetições em anos
-  diferentes) — a Heptarquia anglo-saxônica completa (700), reinos
-  árabes do Nejd/Hejaz da Antiguidade ao Primeiro Estado Saudita (-323 a
-  1815), o Canato Cázaro e os Búlgaros do Volga (700), Sogdiana/Corásmia/
-  Zhangzhung (600), Srivijaya/Chenla/Cidades-Estado Pyu/Ternate/Tidore no
-  Sudeste Asiático (700–1400), o Império de Caném/Reino Cristão da
-  Etiópia/Reino Daju de Darfur (1279), o reino coreano de Buyeo (1 a.C.),
-  e confederações/Estados indígenas americanos — Muísca, Tarasco/
-  Purépecha, Powhatan, Iroquesa/Haudenosaunee (900–1700).
+  atual: 49 entidades (60 entradas contando repetições em anos
+  diferentes, cobrindo 23 anos distintos) — a Heptarquia anglo-saxônica
+  completa (700), reinos árabes do Nejd/Hejaz da Antiguidade ao Primeiro
+  Estado Saudita (-323 a 1815), o Canato Cázaro e os Búlgaros do Volga
+  (700), Sogdiana/Corásmia/Zhangzhung (600), Srivijaya/Chenla/
+  Cidades-Estado Pyu/Ternate/Tidore/Langkasuka no Sudeste Asiático
+  (100–1400), o Império de Caném/Reino Cristão da Etiópia/Reino Daju de
+  Darfur (1279), o reino coreano de Buyeo (1 a.C.), povos da estepe e da
+  Ásia Central — Citas e Sacas (-500), Antes na Ucrânia e o Tocaristão
+  pós-heftalita (600), tribos gaulesas, ibéricas e balcânicas da
+  Antiguidade — Eduos, Arvernos, Helvécios, Lusitanos, Vascões, Boios,
+  Escórdiscos, o Reino Ilírio dos Ardieus, Getas e Bastarnas (-200), e
+  confederações/Estados indígenas americanos — Muísca, Tarasco/
+  Purépecha, Powhatan, Wampanoag, Iroquesa/Haudenosaunee (900–1700), as
+  Reduções jesuíticas guaranis (1700), e os Puebloanos Ancestrais de
+  Chaco Canyon em suas diferentes fases e Casas Grandes/Paquimé
+  (1000–1200).
 - **Postgres/Neon (opcional, legado)**: o projeto ainda inclui um schema
   Prisma, um seed e a rota `/api/empires` de uma abordagem anterior baseada
   em banco. Não é mais usada pelo painel (os resumos agora são estáticos),
